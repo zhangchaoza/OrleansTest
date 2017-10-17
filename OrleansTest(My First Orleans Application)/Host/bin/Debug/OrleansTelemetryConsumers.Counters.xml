@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OrleansTelemetryConsumers.Counters</name>
+    </assembly>
+    <members>
+        <member name="T:OrleansTelemetryConsumers.Counters.OrleansPerformanceCounterInstaller">
+            <summary>
+            Providers installer hooks for registering Orleans custom performance counters.
+            </summary>
+        </member>
+        <member name="M:OrleansTelemetryConsumers.Counters.OrleansPerformanceCounterInstaller.#ctor">
+            <summary>
+            Constructors -- Registers Orleans system performance counters, 
+            plus any grain-specific activation counters that can be detected when this installer is run.
+            </summary>
+        </member>
+        <member name="M:OrleansTelemetryConsumers.Counters.OrleansPerformanceCounterInstaller.Install(System.Collections.IDictionary)">
+            <summary>
+            Installs predefined performance counters logged by this telemetry consumer.
+            </summary>
+            <param name="stateSaver">An <see cref="T:System.Collections.IDictionary" /> used to save information needed to perform a commit, rollback, or uninstall operation. </param>
+        </member>
+        <member name="M:OrleansTelemetryConsumers.Counters.OrleansPerformanceCounterInstaller.Uninstall(System.Collections.IDictionary)">
+            <summary>
+            Removes performance counters installed by this telemetry consumers.
+            </summary>
+            <param name="savedState">An <see cref="T:System.Collections.IDictionary" /> that contains the state of the computer after the installation was complete. </param>
+        </member>
+        <member name="T:OrleansTelemetryConsumers.Counters.OrleansPerfCounterTelemetryConsumer">
+            <summary>
+            Telemetry consumer that writes metrics to predefined performance counters.
+            </summary>
+        </member>
+        <member name="M:OrleansTelemetryConsumers.Counters.OrleansPerfCounterTelemetryConsumer.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:OrleansTelemetryConsumers.Counters.OrleansPerfCounterTelemetryConsumer.AreWindowsPerfCountersAvailable">
+            <summary>
+            Checks to see if windows perf counters as supported by OS.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OrleansTelemetryConsumers.Counters.OrleansPerfCounterTelemetryConsumer.InstallCounters">
+            <summary>
+            Register Orleans perf counters with Windows
+            </summary>
+            <remarks>Note: Program needs to be running as Administrator to be able to delete Windows perf counters.</remarks>
+        </member>
+        <member name="M:OrleansTelemetryConsumers.Counters.OrleansPerfCounterTelemetryConsumer.DeleteCounters">
+            <summary>
+            Delete any existing perf counters registered with Windows
+            </summary>
+            <remarks>Note: Program needs to be running as Administrator to be able to delete Windows perf counters.</remarks>
+        </member>
+        <member name="M:OrleansTelemetryConsumers.Counters.OrleansPerfCounterTelemetryConsumer.IncrementMetric(System.String)">
+            <summary>
+            Increment metric.
+            </summary>
+            <param name="name">metric name</param>
+        </member>
+        <member name="M:OrleansTelemetryConsumers.Counters.OrleansPerfCounterTelemetryConsumer.IncrementMetric(System.String,System.Double)">
+            <summary>
+            Increment metric by value.
+            </summary>
+            <param name="name">metric name</param>
+            <param name="value">metric value</param>
+        </member>
+        <member name="M:OrleansTelemetryConsumers.Counters.OrleansPerfCounterTelemetryConsumer.TrackMetric(System.String,System.Double,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Track metric value
+            </summary>
+            <param name="name">metric name</param>
+            <param name="value">metric value</param>
+            <param name="properties">related properties</param>
+        </member>
+        <member name="M:OrleansTelemetryConsumers.Counters.OrleansPerfCounterTelemetryConsumer.TrackMetric(System.String,System.TimeSpan,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Track metric value
+            </summary>
+            <param name="name">metric name</param>
+            <param name="value">metric value</param>
+            <param name="properties">related properties</param>
+        </member>
+        <member name="M:OrleansTelemetryConsumers.Counters.OrleansPerfCounterTelemetryConsumer.DecrementMetric(System.String)">
+            <summary>
+            Decrement metric
+            </summary>
+            <param name="name">metric name</param>
+        </member>
+        <member name="M:OrleansTelemetryConsumers.Counters.OrleansPerfCounterTelemetryConsumer.DecrementMetric(System.String,System.Double)">
+            <summary>
+            Decrement metric by value
+            </summary>
+            <param name="name">metric name</param>
+            <param name="value">metric value</param>
+        </member>
+        <member name="M:OrleansTelemetryConsumers.Counters.OrleansPerfCounterTelemetryConsumer.Flush">
+            <summary>
+            Write all pending metrics
+            </summary>
+        </member>
+        <member name="M:OrleansTelemetryConsumers.Counters.OrleansPerfCounterTelemetryConsumer.Close">
+            <summary>
+            Close telemetry consumer
+            </summary>
+        </member>
+    </members>
+</doc>

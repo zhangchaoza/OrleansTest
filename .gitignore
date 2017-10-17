@@ -3,3 +3,7 @@
 ################################################################################
 
 /OrleansTest(My First Orleans Application)/packages
+/OrleansTest(Minimal Orleans Application)/packages
+/.vs
+/OrleansTest(My First Orleans Application)/.vs/OrleansTest/v15/sqlite3
+/OrleansTest(Minimal Orleans Application)/.vs/OrleansTest/v15

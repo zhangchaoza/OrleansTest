@@ -1,0 +1,782 @@
+[2017-10-17 14:45:31.168 GMT     1	INFO   	100404	Silo	127.0.0.1:22222]	Silo starting with GC settings: ServerGC=True GCLatencyMode=Batch	
+[2017-10-17 14:45:31.173 GMT     1	INFO   	100403	Silo	127.0.0.1:22222]	-------------- Initializing Primary silo on host DESKTOP-VA6L48V MachineName DESKTOP-VA6L48V at 127.0.0.1:22222, gen 245947531 --------------	
+[2017-10-17 14:45:31.201 GMT     1	INFO   	100415	Silo	127.0.0.1:22222]	Starting silo TestSilo with the following configuration= 
+Config File Name: 
+Host: DESKTOP-VA6L48V
+Start time: 2017-10-17 14:45:31.175 GMT
+Primary node: 127.0.0.1:22222
+Platform version info:
+   Orleans version: 1.5.1.0 (Release).
+   .NET version: 4.0.30319.42000
+   OS version: Microsoft Windows NT 6.2.9200.0
+   App config file: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\Host.exe.Config
+   GC Type=Server GCLatencyMode=Batch
+Global configuration:
+   System Ids:
+      ServiceId: 00000000-0000-0000-0000-000000000000
+      DeploymentId: 
+   Subnet: 
+   Seed nodes: 127.0.0.1:22222
+   Messaging:
+       Response timeout: 00:30:00
+       Maximum resend count: 0
+       Resend On Timeout: False
+       Maximum Socket Age: 10675199.02:48:05.4775807
+       Drop Expired Messages: True
+       Silo Sender queues: 4
+       Gateway Sender queues: 4
+       Client Drop Timeout: 00:01:00
+       Buffer Pool Buffer Size: 4096
+       Buffer Pool Max Size: 10000
+       Buffer Pool Preallocation Size: 250
+       Maximum forward count: 2
+       Fallback serializer: 
+   Liveness:
+      LivenessEnabled: True
+      LivenessType: MembershipTableGrain
+      ProbeTimeout: 00:00:10
+      TableRefreshTimeout: 00:01:00
+      DeathVoteExpirationTimeout: 00:02:00
+      NumMissedProbesLimit: 3
+      NumProbedSilos: 3
+      NumVotesForDeathDeclaration: 2
+      UseLivenessGossip: True
+      ValidateInitialConnectivity: True
+      IAmAliveTablePublishTimeout: 00:05:00
+      NumMissedTableIAmAliveLimit: 2
+      MaxJoinAttemptTime: 00:05:00
+      ExpectedClusterSize: 20
+   MultiClusterNetwork: N/A
+   SystemStore:
+      SystemStore ConnectionString: null
+      Reminders ConnectionString: null
+   Application:
+      Defaults:
+         Deactivate if idle for: 02:00:00
+
+   PlacementStrategy: 
+         Default Placement Strategy: RandomPlacement
+         Deployment Load Publisher Refresh Time: 00:00:01
+         Activation CountBased Placement Choose Out Of: 2
+   Grain directory cache:
+      Maximum size: 1000000 grains
+      Initial TTL: 00:00:30
+      Maximum TTL: 00:04:00
+      TTL extension factor: 2.00
+      Directory Caching Strategy: Adaptive
+   Grain directory:
+      Lazy deregistration delay: 00:01:00
+      Client registration refresh: 00:05:00
+   Reminder Service:
+       ReminderServiceType: ReminderTableGrain
+   Consistent Ring:
+       Use Virtual Buckets Consistent Ring: True
+       Num Virtual Buckets Consistent Ring: 30
+   Providers:
+       No providers configured.
+Silo configuration:
+   Silo Name: TestSilo
+   Generation: 245947531
+   Host Name or IP Address: localhost
+   DNS Host Name: DESKTOP-VA6L48V
+   Port: 22222
+   Subnet: 
+   Preferred Address Family: InterNetwork
+   Proxy Gateway: 127.0.0.1:40000
+   IsPrimaryNode: True
+   Scheduler: 
+         Max Active Threads: 4
+         Processor Count: 4
+         Delay Warning Threshold: 00:00:10
+         Activation Scheduling Quantum: 00:00:00.1000000
+         Turn Warning Length Threshold: 00:00:00.2000000
+         Inject More Worker Threads: False
+         MinDotNetThreadPoolSize: 200
+         .NET thread pool sizes - Min: Worker Threads=4 Completion Port Threads=4
+         .NET thread pool sizes - Max: Worker Threads=32767 Completion Port Threads=1000
+         .NET ServicePointManager - DefaultConnectionLimit=200 Expect100Continue=False UseNagleAlgorithm=False
+   Load Shedding Enabled: False
+   Load Shedding Limit: 95
+   SiloShutdownEventName: 
+   Debug: 
+   Tracing: 
+     Default Trace Level: Info
+     TraceLevelOverrides: None
+     Trace to Console: True
+     Trace File Name: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\TestSilo-2017-10-17-14.45.31.032Z.log
+     LargeMessageWarningThreshold: 85000
+     PropagateActivityId: False
+     BulkMessageLimit: 5
+   Statistics: 
+     MetricsTableWriteInterval: 00:00:30
+     PerfCounterWriteInterval: 00:00:30
+     LogWriteInterval: 00:05:00
+     WriteLogStatisticsToTable: True
+     StatisticsCollectionLevel: Info
+
+	
+[2017-10-17 14:45:32.152 GMT     1	INFO   	100000	AssemblyLoader.Silo	127.0.0.1:22222]	Searching for assemblies in C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug...	
+[2017-10-17 14:45:32.208 GMT     1	INFO   	100000	AssemblyLoader.Silo	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\GrainInterfaces.dll
+	* Assembly does not contain any acceptable grain types.
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:32.391 GMT     1	INFO   	100000	AssemblyLoader.Silo	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\Microsoft.CodeAnalysis.CSharp.dll
+	* Assembly does not contain any acceptable grain types.
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:32.473 GMT     1	INFO   	100000	AssemblyLoader.Silo	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\Microsoft.CodeAnalysis.dll
+	* Assembly does not contain any acceptable grain types.
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:32.475 GMT     1	INFO   	100000	AssemblyLoader.Silo	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+	* Assembly does not contain any acceptable grain types.
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:32.479 GMT     1	INFO   	100000	AssemblyLoader.Silo	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\Microsoft.Extensions.DependencyInjection.dll
+	* Assembly does not contain any acceptable grain types.
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:32.479 GMT     1	INFO   	100000	AssemblyLoader.Silo	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\Microsoft.Win32.Primitives.dll
+	* Assembly does not contain any acceptable grain types.
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:32.493 GMT     1	INFO   	100000	AssemblyLoader.Silo	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\Newtonsoft.Json.dll
+	* Assembly does not contain any acceptable grain types.
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:32.494 GMT     1	INFO   	100000	AssemblyLoader.Silo	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\Orleans.dll
+	* Assembly filename is excluded.	
+[2017-10-17 14:45:32.495 GMT     1	INFO   	100000	AssemblyLoader.Silo	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\OrleansCodeGenerator.dll
+	* Assembly does not contain any acceptable grain types.
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:32.500 GMT     1	INFO   	100000	AssemblyLoader.Silo	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\OrleansRuntime.dll
+	* Assembly filename is excluded.	
+[2017-10-17 14:45:32.504 GMT     1	INFO   	100000	AssemblyLoader.Silo	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\OrleansTelemetryConsumers.Counters.dll
+	* Assembly does not contain any acceptable grain types.
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:32.506 GMT     1	INFO   	100000	AssemblyLoader.Silo	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.AppContext.dll
+	* Assembly does not contain any acceptable grain types.
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:32.518 GMT     1	INFO   	100000	AssemblyLoader.Silo	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Collections.Immutable.dll
+	* Assembly does not contain any acceptable grain types.
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:32.520 GMT     1	INFO   	100000	AssemblyLoader.Silo	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Console.dll
+	* Assembly does not contain any acceptable grain types.
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:32.524 GMT     1	INFO   	100000	AssemblyLoader.Silo	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+	* Assembly does not contain any acceptable grain types.
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:32.526 GMT     1	INFO   	100000	AssemblyLoader.Silo	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Diagnostics.FileVersionInfo.dll
+	* Assembly does not contain any acceptable grain types.
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:32.528 GMT     1	INFO   	100000	AssemblyLoader.Silo	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Diagnostics.StackTrace.dll
+	* Assembly does not contain any acceptable grain types.
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:32.530 GMT     1	INFO   	100000	AssemblyLoader.Silo	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Globalization.Calendars.dll
+	* Assembly does not contain any acceptable grain types.
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:32.532 GMT     1	INFO   	100000	AssemblyLoader.Silo	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.IO.Compression.dll
+	* Assembly does not contain any acceptable grain types.
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:32.535 GMT     1	INFO   	100000	AssemblyLoader.Silo	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.IO.Compression.ZipFile.dll
+	* Assembly does not contain any acceptable grain types.
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:32.537 GMT     1	INFO   	100000	AssemblyLoader.Silo	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.IO.FileSystem.dll
+	* Assembly does not contain any acceptable grain types.
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:32.539 GMT     1	INFO   	100000	AssemblyLoader.Silo	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.IO.FileSystem.Primitives.dll
+	* Assembly does not contain any acceptable grain types.
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:32.547 GMT     1	INFO   	100000	AssemblyLoader.Silo	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Net.Http.dll
+	* Assembly does not contain any acceptable grain types.
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:32.549 GMT     1	INFO   	100000	AssemblyLoader.Silo	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Net.Sockets.dll
+	* Assembly does not contain any acceptable grain types.
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:32.566 GMT     1	INFO   	100000	AssemblyLoader.Silo	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Reflection.Metadata.dll
+	* Assembly does not contain any acceptable grain types.
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:32.570 GMT     1	INFO   	100000	AssemblyLoader.Silo	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+	* Assembly does not contain any acceptable grain types.
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:32.572 GMT     1	INFO   	100000	AssemblyLoader.Silo	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Security.Cryptography.Algorithms.dll
+	* Assembly does not contain any acceptable grain types.
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:32.574 GMT     1	INFO   	100000	AssemblyLoader.Silo	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Security.Cryptography.Encoding.dll
+	* Assembly does not contain any acceptable grain types.
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:32.576 GMT     1	INFO   	100000	AssemblyLoader.Silo	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Security.Cryptography.Primitives.dll
+	* Assembly does not contain any acceptable grain types.
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:32.579 GMT     1	INFO   	100000	AssemblyLoader.Silo	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Security.Cryptography.X509Certificates.dll
+	* Assembly does not contain any acceptable grain types.
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:32.582 GMT     1	INFO   	100000	AssemblyLoader.Silo	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Text.Encoding.CodePages.dll
+	* Assembly does not contain any acceptable grain types.
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:32.584 GMT     1	INFO   	100000	AssemblyLoader.Silo	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Threading.Thread.dll
+	* Assembly does not contain any acceptable grain types.
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:32.587 GMT     1	INFO   	100000	AssemblyLoader.Silo	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.ValueTuple.dll
+	* Assembly does not contain any acceptable grain types.
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:32.592 GMT     1	INFO   	100000	AssemblyLoader.Silo	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Xml.ReaderWriter.dll
+	* Assembly does not contain any acceptable grain types.
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:32.593 GMT     1	INFO   	100000	AssemblyLoader.Silo	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Xml.XmlDocument.dll
+	* Assembly does not contain any acceptable grain types.
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:32.595 GMT     1	INFO   	100000	AssemblyLoader.Silo	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Xml.XPath.dll
+	* Assembly does not contain any acceptable grain types.
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:32.596 GMT     1	INFO   	100000	AssemblyLoader.Silo	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Xml.XPath.XDocument.dll
+	* Assembly does not contain any acceptable grain types.
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:32.597 GMT     1	WARNING	101705	AssemblyLoader.Silo	127.0.0.1:22222]	Unable to find directory C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\Applications; skipping.	
+[2017-10-17 14:45:32.602 GMT     1	INFO   	100000	AssemblyLoader.Silo	127.0.0.1:22222]	Loading assembly C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\HelloGrains.dll...	
+[2017-10-17 14:45:32.617 GMT     1	INFO   	100000	AssemblyLoader.Silo	127.0.0.1:22222]	Loading assembly C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\OrleansProviders.dll...	
+[2017-10-17 14:45:32.631 GMT     1	INFO   	100000	AssemblyLoader.Silo	127.0.0.1:22222]	2 assemblies loaded.	
+[2017-10-17 14:45:32.846 GMT     1	INFO   	100000	Scheduler.OrleansTaskScheduler	127.0.0.1:22222]	Starting OrleansTaskScheduler with 4 Max Active application Threads and 1 system thread.	
+[2017-10-17 14:45:32.875 GMT     1	INFO   	101010	Runtime.Messaging.IncomingMessageAcceptor	127.0.0.1:22222]	Opened a listening socket at address 127.0.0.1:22222	
+[2017-10-17 14:45:32.883 GMT     1	INFO   	101010	Runtime.Messaging.GatewayAcceptor	127.0.0.1:22222]	Opened a listening socket at address 127.0.0.1:40000	
+[2017-10-17 14:45:32.927 GMT     1	INFO   	100000	VirtualBucketsRingProvider	127.0.0.1:22222]	Starting VirtualBucketsRingProvider on silo S127.0.0.1:22222:245947531/x2989614A.	
+[2017-10-17 14:45:32.961 GMT     1	INFO   	103003	VirtualBucketsRingProvider	127.0.0.1:22222]	Added Server S127.0.0.1:22222:245947531/x2989614A. Current view: [S127.0.0.1:22222:245947531 -> <MultiRange: Size=x100000000, %Ring=100.000%>]	
+[2017-10-17 14:45:32.965 GMT     1	INFO   	103005	VirtualBucketsRingProvider	127.0.0.1:22222]	-NotifyLocalRangeSubscribers about old <(0 0], Size=x100000000, %Ring=100.000%> new <MultiRange: Size=x100000000, %Ring=100.000%> increased? True	
+[2017-10-17 14:45:32.992 GMT     1	INFO   	100000	Silo	127.0.0.1:22222]	Skip multicluster oracle creation (no multicluster network configured)	
+[2017-10-17 14:45:32.994 GMT     1	INFO   	100422	Silo	127.0.0.1:22222]	-------------- Started silo S127.0.0.1:22222:245947531, ConsistentHashCode 2989614A --------------	
+[2017-10-17 14:45:32.997 GMT     1	INFO   	100288	OrleansSiloHost	127.0.0.1:22222]	Successfully initialized Orleans silo 'TestSilo' as a Primary node.	
+[2017-10-17 14:45:33.009 GMT     1	INFO   	100441	OrleansSiloHost	127.0.0.1:22222]	Silo shutdown event name: TestSilo-Shutdown	
+[2017-10-17 14:45:33.010 GMT     1	INFO   	100442	OrleansSiloHost	127.0.0.1:22222]	Created and set shutdown event TestSilo-Shutdown	
+[2017-10-17 14:45:33.019 GMT     1	INFO   	100401	Silo	127.0.0.1:22222]	Silo Start()	
+[2017-10-17 14:45:33.022 GMT     1	INFO   	100430	Silo	127.0.0.1:22222]	Configured ThreadPool.SetMinThreads() to values: 200,200. Previous values are: 4,4.	
+[2017-10-17 14:45:33.026 GMT     1	INFO   	100436	Silo	127.0.0.1:22222]	Configured .NET ServicePointManager to Expect100Continue=False, DefaultConnectionLimit=200, UseNagleAlgorithm=False to improve Azure storage performance.	
+[2017-10-17 14:45:33.075 GMT     1	INFO   	101711	AssemblyLoader.Silo	127.0.0.1:22222]	Loaded grain type summary for 9 types: 
+Grain class HelloGrains.HelloGrains.HelloGrain [816346605 (0x30A875ED)] from HelloGrains.dll implementing interfaces: GrainInterfaces.GrainInterfaces.IHello [1739238235 (0x67AAAB5B)]
+Grain class Orleans.LogConsistency.Orleans.LogConsistency.LogConsistentGrainBase<TView> [-2062750837 (0x850CEB8B)] from Orleans.dll implementing interfaces: 
+Grain class Orleans.Providers.Orleans.Providers.MemoryStreamQueueGrain [1359359215 (0x51062CEF)] from OrleansProviders.dll implementing interfaces: Orleans.Providers.Orleans.Providers.IMemoryStreamQueueGrain [1158152105 (0x4507FFA9)]
+Grain class Orleans.Runtime.Management.Orleans.Runtime.Management.ManagementGrain [1954798034 (0x7483D9D2)] from OrleansRuntime.dll implementing interfaces: Orleans.Runtime.Orleans.Runtime.IManagementGrain [-1734666656 (0x989B1660)]
+Grain class Orleans.Runtime.MembershipService.Orleans.Runtime.MembershipService.GrainBasedMembershipTable [-2103923544 (0x8298ACA8)] from OrleansRuntime.dll implementing interfaces: Orleans.Orleans.IMembershipTableGrain [-1256503757 (0xB51B4633)]
+Grain class Orleans.Runtime.ReminderService.Orleans.Runtime.ReminderService.GrainBasedReminderTable [-55315191 (0xFCB3F509)] from OrleansRuntime.dll implementing interfaces: Orleans.Orleans.IReminderTableGrain [-1135060418 (0xBC585A3E)]
+Grain class Orleans.Runtime.Versions.Orleans.Runtime.Versions.VersionStoreGrain [331003096 (0x13BAB4D8)] from OrleansRuntime.dll implementing interfaces: Orleans.Runtime.Versions.Orleans.Runtime.Versions.IVersionStoreGrain [-297600501 (0xEE42FA0B)], Orleans.Orleans.IGrainWithStringKey [-1277021679 (0xB3E23211)]
+Grain class Orleans.Storage.Orleans.Storage.MemoryStorageGrain [819348208 (0x30D642F0)] from OrleansRuntime.dll implementing interfaces: Orleans.Storage.Orleans.Storage.IMemoryStorageGrain [577125491 (0x22663C73)]
+Grain class Orleans.Streams.Orleans.Streams.PubSubRendezvousGrain [1903070868 (0x716E8E94)] from OrleansRuntime.dll implementing interfaces: Orleans.Streams.Orleans.Streams.IPubSubRendezvousGrain [1746702088 (0x681C8F08)]
+	
+[2017-10-17 14:45:33.133 GMT     9	INFO   	100000	Runtime.Scheduler.WorkerPoolThread/2	127.0.0.1:22222]	Starting AsyncAgent Runtime.Scheduler.WorkerPoolThread/2 on managed thread 9	
+[2017-10-17 14:45:33.133 GMT    11	INFO   	100000	Runtime.Scheduler.WorkerPoolThread/System.5	127.0.0.1:22222]	Starting AsyncAgent Runtime.Scheduler.WorkerPoolThread/System.5 on managed thread 11	
+[2017-10-17 14:45:33.183 GMT    14	INFO   	100000	Runtime.Messaging.SiloMessageSender/PingSender	127.0.0.1:22222]	Starting AsyncAgent Runtime.Messaging.SiloMessageSender/PingSender on managed thread 14	
+[2017-10-17 14:45:33.158 GMT    13	INFO   	100000	Runtime.Messaging.IncomingMessageAcceptor	127.0.0.1:22222]	Starting AsyncAgent Runtime.Messaging.IncomingMessageAcceptor on managed thread 13	
+[2017-10-17 14:45:33.133 GMT     8	INFO   	100000	Runtime.Scheduler.WorkerPoolThread/1	127.0.0.1:22222]	Starting AsyncAgent Runtime.Scheduler.WorkerPoolThread/1 on managed thread 8	
+[2017-10-17 14:45:33.133 GMT     7	INFO   	100000	Runtime.Scheduler.WorkerPoolThread/0	127.0.0.1:22222]	Starting AsyncAgent Runtime.Scheduler.WorkerPoolThread/0 on managed thread 7	
+[2017-10-17 14:45:33.158 GMT    10	INFO   	100000	Runtime.Scheduler.WorkerPoolThread/3	127.0.0.1:22222]	Starting AsyncAgent Runtime.Scheduler.WorkerPoolThread/3 on managed thread 10	
+[2017-10-17 14:45:33.188 GMT    15	INFO   	100000	Runtime.Messaging.SiloMessageSender/SystemSender	127.0.0.1:22222]	Starting AsyncAgent Runtime.Messaging.SiloMessageSender/SystemSender on managed thread 15	
+[2017-10-17 14:45:33.218 GMT    21	INFO   	100000	Runtime.Messaging.IncomingMessageAgent/Ping	127.0.0.1:22222]	Starting AsyncAgent Runtime.Messaging.IncomingMessageAgent/Ping on managed thread 21	
+[2017-10-17 14:45:33.230 GMT    20	INFO   	100000	Runtime.Messaging.IncomingMessageAgent/System	127.0.0.1:22222]	Starting AsyncAgent Runtime.Messaging.IncomingMessageAgent/System on managed thread 20	
+[2017-10-17 14:45:33.232 GMT    13	INFO   	100328	Runtime.Messaging.IncomingMessageAcceptor	127.0.0.1:22222]	Stopping AsyncAgent Runtime.Messaging.IncomingMessageAcceptor that runs on managed thread 13	
+[2017-10-17 14:45:33.236 GMT    22	INFO   	100000	Runtime.Messaging.IncomingMessageAgent/Application	127.0.0.1:22222]	Starting AsyncAgent Runtime.Messaging.IncomingMessageAgent/Application on managed thread 22	
+[2017-10-17 14:45:33.258 GMT     1	INFO   	100000	Orleans.GrainDirectory.LocalGrainDirectory	127.0.0.1:22222]	Start (SeverityLevel=Info)	
+[2017-10-17 14:45:33.271 GMT    18	INFO   	100000	Runtime.GrainDirectory.AdaptiveDirectoryCacheMaintainer`1	127.0.0.1:22222]	Starting AsyncAgent Runtime.GrainDirectory.AdaptiveDirectoryCacheMaintainer`1 on managed thread 18	
+[2017-10-17 14:45:33.275 GMT    19	INFO   	100000	Runtime.GrainDirectory.GlobalSingleInstanceActivationMaintainer	127.0.0.1:22222]	Starting AsyncAgent Runtime.GrainDirectory.GlobalSingleInstanceActivationMaintainer on managed thread 19	
+[2017-10-17 14:45:33.284 GMT    19	INFO   	100328	Runtime.GrainDirectory.GlobalSingleInstanceActivationMaintainer	127.0.0.1:22222]	Stopping AsyncAgent Runtime.GrainDirectory.GlobalSingleInstanceActivationMaintainer that runs on managed thread 19	
+[2017-10-17 14:45:33.327 GMT     1	INFO   	100000	ReminderFactory	127.0.0.1:22222]	Creating reminder grain service for type=Orleans.OrleansCodeGenReminderTableGrainReference	
+[2017-10-17 14:45:33.358 GMT    10	INFO   	100603	MembershipOracle	127.0.0.1:22222]	MembershipOracle starting on host = DESKTOP-VA6L48V address = S127.0.0.1:22222:245947531 at 2017-10-17 14:45:32.893 GMT, backOffMax = 00:00:20	
+[2017-10-17 14:45:33.361 GMT    11	INFO   	100507	Catalog	127.0.0.1:22222]	Before collection#1: memory=11MB, #activations=0, collector=<#Activations=0, #Buckets=0, buckets=[]>.	
+[2017-10-17 14:45:33.364 GMT    11	INFO   	100508	Catalog	127.0.0.1:22222]	After collection#1: memory=11MB, #activations=0, collected 0 activations, collector=<#Activations=0, #Buckets=0, buckets=[]>, collection time=00:00:00.0089328.	
+[2017-10-17 14:45:33.367 GMT    10	INFO   	100635	MembershipTableFactory	127.0.0.1:22222]	Creating membership table grain	
+[2017-10-17 14:45:33.408 GMT     7	INFO   	100637	GrainBasedMembershipTable	127.0.0.1:22222]	GrainBasedMembershipTable Activated.	
+[2017-10-17 14:45:33.490 GMT    11	INFO   	100631	MembershipTableFactory	127.0.0.1:22222]	-Connected to membership table provider.	
+[2017-10-17 14:45:33.528 GMT    10	INFO   	100000	GrainBasedMembershipTable	127.0.0.1:22222]	InitializeMembershipTable True.	
+[2017-10-17 14:45:39.128 GMT    11	INFO   	100652	MembershipOracle	127.0.0.1:22222]	-CleanupTable called on silo startup. Membership table 0 silos, 0 are Active, 0 are Dead, Version=<0, 0>. All silos: []	
+[2017-10-17 14:45:39.170 GMT    11	INFO   	100660	MembershipOracle	127.0.0.1:22222]	Starting IAmAliveUpdateTimer.	
+[2017-10-17 14:45:39.189 GMT    11	INFO   	100604	MembershipOracle	127.0.0.1:22222]	-BecomeActive	
+[2017-10-17 14:45:39.195 GMT    11	INFO   	100614	MembershipOracle	127.0.0.1:22222]	About to send pings to 0 nodes in order to validate communication in the Joining state. Pinged nodes = []	
+[2017-10-17 14:45:39.204 GMT     7	INFO   	100634	MembershipOracle	127.0.0.1:22222]	-ReadAll (called from BecomeActive) Membership table 1 silos, 1 are Active, 0 are Dead, Version=<2, 5>. All silos: [SiloAddress=S127.0.0.1:22222:245947531 SiloName=TestSilo Status=Active]	
+[2017-10-17 14:45:39.207 GMT     7	INFO   	100605	MembershipOracle	127.0.0.1:22222]	-Finished BecomeActive.	
+[2017-10-17 14:45:39.217 GMT    11	INFO   	100000	TypeManager	127.0.0.1:22222]	OnRefreshClusterMapTimer: refresh start	
+[2017-10-17 14:45:39.221 GMT     1	INFO   	100702	WindowsPerfCountersStatistics	127.0.0.1:22222]	Starting Windows perf counter stats collection with frequency=00:00:30	
+[2017-10-17 14:45:39.231 GMT     1	INFO   	100714	SiloPerformanceMetrics	127.0.0.1:22222]	Starting Silo Table metrics reporter with reportFrequency=00:00:30	
+[2017-10-17 14:45:39.235 GMT    11	INFO   	100000	DeploymentLoadPublisher	127.0.0.1:22222]	Starting DeploymentLoadPublisher.	
+[2017-10-17 14:45:39.265 GMT     7	INFO   	100000	DeploymentLoadPublisher	127.0.0.1:22222]	Started DeploymentLoadPublisher.	
+[2017-10-17 14:45:39.268 GMT     1	INFO   	100000	Watchdog	127.0.0.1:22222]	Starting Silo Watchdog.	
+[2017-10-17 14:45:39.274 GMT    24	INFO   	100000	Runtime.Watchdog	127.0.0.1:22222]	Starting AsyncAgent Runtime.Watchdog on managed thread 24	
+[2017-10-17 14:45:39.323 GMT     9	INFO   	100000	GrainBasedReminderTable_S127.0.0.1:22222:245947531*grn/FCB3F509/00003039@7cf844a4	127.0.0.1:22222]	GrainBasedReminderTable *grn/FCB3F509/00003039 Activated. Full identity: [ActivationAddress: S127.0.0.1:22222:245947531*grn/FCB3F509/00003039@7cf844a4, Full GrainId: [GrainId: *grn/FCB3F509/0000000000000000000000000000303903fffffffcb3f509-0xBB9ED002, IdCategory: Grain, BaseTypeCode: -55315191 (xFCB3F509), PrimaryKey: 12345 (x3039), UniformHashCode: 3147747330 (0xBB9ED002)], Full ActivationId: @45199ab389aec188a4c764be7cf844a40000000000000000]	
+[2017-10-17 14:45:39.331 GMT    10	INFO   	102925	Orleans.Runtime.ReminderService.LocalReminderService	127.0.0.1:22222]	Starting Orleans.Runtime.ReminderService.LocalReminderService grain service on: S127.0.0.1:22222:245947531 x2989614A, with range 	
+[2017-10-17 14:45:39.366 GMT    16	INFO   	100000	Runtime.Messaging.GatewayAcceptor	127.0.0.1:22222]	Starting AsyncAgent Runtime.Messaging.GatewayAcceptor on managed thread 16	
+[2017-10-17 14:45:39.369 GMT    17	INFO   	100000	Runtime.Messaging.GatewayClientCleanupAgent	127.0.0.1:22222]	Starting AsyncAgent Runtime.Messaging.GatewayClientCleanupAgent on managed thread 17	
+[2017-10-17 14:45:39.416 GMT     1	INFO   	100424	OrleansSiloHost	127.0.0.1:22222]	Silo startup event name: TestSilo	
+[2017-10-17 14:45:39.418 GMT    16	INFO   	100328	Runtime.Messaging.GatewayAcceptor	127.0.0.1:22222]	Stopping AsyncAgent Runtime.Messaging.GatewayAcceptor that runs on managed thread 16	
+[2017-10-17 14:45:39.420 GMT     1	INFO   	100425	OrleansSiloHost	127.0.0.1:22222]	Created and set startup event TestSilo	
+[2017-10-17 14:45:39.423 GMT     1	INFO   	100402	OrleansSiloHost	127.0.0.1:22222]	Silo TestSilo started successfully	
+[2017-10-17 14:45:39.694 GMT     1	INFO   	100000	AssemblyLoader.Client	127.0.0.1:22222]	Recursively searching for assemblies in C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug...	
+[2017-10-17 14:45:39.706 GMT     1	INFO   	100000	AssemblyLoader.Client	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\GrainInterfaces.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:39.709 GMT     1	INFO   	100000	AssemblyLoader.Client	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\HelloGrains.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:39.713 GMT     1	INFO   	100000	AssemblyLoader.Client	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\Microsoft.CodeAnalysis.CSharp.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:39.721 GMT     1	INFO   	100000	AssemblyLoader.Client	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\Microsoft.CodeAnalysis.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:39.729 GMT     1	INFO   	100000	AssemblyLoader.Client	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:39.734 GMT     1	INFO   	100000	AssemblyLoader.Client	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\Microsoft.Extensions.DependencyInjection.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:39.739 GMT     1	INFO   	100000	AssemblyLoader.Client	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\Microsoft.Win32.Primitives.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:39.742 GMT     1	INFO   	100000	AssemblyLoader.Client	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\Newtonsoft.Json.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:39.745 GMT     1	INFO   	100000	AssemblyLoader.Client	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\Orleans.dll
+	* Assembly filename is excluded.	
+[2017-10-17 14:45:39.747 GMT     1	INFO   	100000	AssemblyLoader.Client	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\OrleansCodeGenerator.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:39.749 GMT     1	INFO   	100000	AssemblyLoader.Client	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\OrleansRuntime.dll
+	* Assembly filename is excluded.	
+[2017-10-17 14:45:39.751 GMT     1	INFO   	100000	AssemblyLoader.Client	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\OrleansTelemetryConsumers.Counters.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:39.753 GMT     1	INFO   	100000	AssemblyLoader.Client	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.AppContext.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:39.759 GMT     1	INFO   	100000	AssemblyLoader.Client	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Collections.Immutable.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:39.760 GMT     1	INFO   	100000	AssemblyLoader.Client	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Console.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:39.762 GMT     1	INFO   	100000	AssemblyLoader.Client	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:39.764 GMT     1	INFO   	100000	AssemblyLoader.Client	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Diagnostics.FileVersionInfo.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:39.769 GMT     1	INFO   	100000	AssemblyLoader.Client	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Diagnostics.StackTrace.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:39.771 GMT     1	INFO   	100000	AssemblyLoader.Client	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Globalization.Calendars.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:39.774 GMT     1	INFO   	100000	AssemblyLoader.Client	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.IO.Compression.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:39.779 GMT     1	INFO   	100000	AssemblyLoader.Client	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.IO.Compression.ZipFile.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:39.781 GMT     1	INFO   	100000	AssemblyLoader.Client	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.IO.FileSystem.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:39.782 GMT     1	INFO   	100000	AssemblyLoader.Client	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.IO.FileSystem.Primitives.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:39.784 GMT     1	INFO   	100000	AssemblyLoader.Client	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Net.Http.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:39.788 GMT     1	INFO   	100000	AssemblyLoader.Client	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Net.Sockets.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:39.791 GMT     1	INFO   	100000	AssemblyLoader.Client	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Reflection.Metadata.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:39.793 GMT     1	INFO   	100000	AssemblyLoader.Client	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:39.795 GMT     1	INFO   	100000	AssemblyLoader.Client	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Security.Cryptography.Algorithms.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:39.799 GMT     1	INFO   	100000	AssemblyLoader.Client	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Security.Cryptography.Encoding.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:39.801 GMT     1	INFO   	100000	AssemblyLoader.Client	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Security.Cryptography.Primitives.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:39.803 GMT     1	INFO   	100000	AssemblyLoader.Client	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Security.Cryptography.X509Certificates.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:39.807 GMT     1	INFO   	100000	AssemblyLoader.Client	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Text.Encoding.CodePages.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:39.809 GMT     1	INFO   	100000	AssemblyLoader.Client	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Threading.Thread.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:39.811 GMT     1	INFO   	100000	AssemblyLoader.Client	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.ValueTuple.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:39.812 GMT     1	INFO   	100000	AssemblyLoader.Client	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Xml.ReaderWriter.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:39.814 GMT     1	INFO   	100000	AssemblyLoader.Client	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Xml.XmlDocument.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:39.815 GMT     1	INFO   	100000	AssemblyLoader.Client	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Xml.XPath.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:39.820 GMT     1	INFO   	100000	AssemblyLoader.Client	127.0.0.1:22222]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Xml.XPath.XDocument.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:39.821 GMT     1	INFO   	100000	AssemblyLoader.Client	127.0.0.1:22222]	Loading assembly C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\OrleansProviders.dll...	
+[2017-10-17 14:45:39.824 GMT     1	INFO   	100000	AssemblyLoader.Client	127.0.0.1:22222]	1 assemblies loaded.	
+[2017-10-17 14:45:39.824 GMT     1	WARNING	100153	OutsideRuntimeClient	127.0.0.1:22222]	Unable to set unobserved exception handler because it was already set.	
+[2017-10-17 14:45:39.833 GMT     1	INFO   	100313	OutsideRuntimeClient	127.0.0.1:22222]	---------- Initializing OutsideRuntimeClient on DESKTOP-VA6L48V at 192.168.1.109 Client Id = *cli/8c4c72b7 ----------	
+[2017-10-17 14:45:39.839 GMT     1	INFO   	100314	OutsideRuntimeClient	127.0.0.1:22222]	---------- Starting OutsideRuntimeClient with runtime Version='1.5.1.0 (Release).' in AppDomain=<AppDomain.Id=1, AppDomain.FriendlyName=Host.exe> Config= 
+ Platform version info:
+   Orleans version: 1.5.1.0 (Release).
+   .NET version: 4.0.30319.42000
+   OS version: Microsoft Windows NT 6.2.9200.0
+   App config file: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\Host.exe.Config
+   GC Type=Server GCLatencyMode=Batch
+   Host: DESKTOP-VA6L48V
+   Processor Count: 4
+Client Configuration:
+   Config File Name: 
+   Start time: 2017-10-17 14:45:39.839 GMT
+   Gateway Provider: Config
+   Gateways[1]:
+      127.0.0.1:40000
+   Preferred Gateway Index: -1
+   GatewayListRefreshPeriod: 00:01:00
+   Preferred Address Family: InterNetwork
+   DNS Host Name: DESKTOP-VA6L48V
+   Client Name: Client
+   Tracing: 
+     Default Trace Level: Info
+     TraceLevelOverrides: None
+     Trace to Console: True
+     Trace File Name: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\Client-2017-10-17-14.45.39.426Z.log
+     LargeMessageWarningThreshold: 85000
+     PropagateActivityId: False
+     BulkMessageLimit: 5
+   Statistics: 
+     MetricsTableWriteInterval: 00:00:30
+     PerfCounterWriteInterval: -00:00:00.0010000
+     LogWriteInterval: 00:05:00
+     WriteLogStatisticsToTable: True
+     StatisticsCollectionLevel: Info
+   Messaging:
+       Response timeout: 00:30:00
+       Maximum resend count: 0
+       Resend On Timeout: False
+       Maximum Socket Age: 10675199.02:48:05.4775807
+       Drop Expired Messages: True
+       Client Sender Buckets: 8192
+       Buffer Pool Buffer Size: 4096
+       Buffer Pool Max Size: 10000
+       Buffer Pool Preallocation Size: 250
+       Fallback serializer: 
+   .NET: 
+       .NET thread pool sizes - Min: Worker Threads=200 Completion Port Threads=200
+       .NET thread pool sizes - Max: Worker Threads=32767 Completion Port Threads=1000
+   Providers:
+       No providers configured.
+	
+[2017-10-17 14:45:39.856 GMT     4	INFO   	101309	Messaging.GatewayManager	127.0.0.1:22222]	Found 1 knownGateways from Gateway listProvider [gwy.tcp://127.0.0.1:40000/0]	
+[2017-10-17 14:45:39.881 GMT     4	INFO   	100908	Messaging.GatewayConnection/GatewayClientSender_gwy.tcp://127.0.0.1:40000/0	192.168.1.109:0]	Connected to gateway at address gwy.tcp://127.0.0.1:40000/0 on trial 0.	
+[2017-10-17 14:45:39.887 GMT    30	INFO   	100000	Messaging.GatewayClientReceiver/gwy.tcp://127.0.0.1:40000/0	192.168.1.109:0]	Starting AsyncAgent Messaging.GatewayClientReceiver/gwy.tcp://127.0.0.1:40000/0 on managed thread 30	
+[2017-10-17 14:45:39.890 GMT    29	INFO   	100000	Messaging.GatewayConnection/GatewayClientSender_gwy.tcp://127.0.0.1:40000/0	192.168.1.109:0]	Starting AsyncAgent Messaging.GatewayConnection/GatewayClientSender_gwy.tcp://127.0.0.1:40000/0 on managed thread 29	
+[2017-10-17 14:45:39.896 GMT    31	INFO   	101301	Orleans.Messaging.Gateway	192.168.1.109:0]	Recorded opened socket from endpoint 127.0.0.1:2102, client ID *cli/8c4c72b7.	
+[2017-10-17 14:45:39.978 GMT    33	INFO   	100000	Runtime.Messaging.GatewaySender/GatewaySiloSender_0	192.168.1.109:0]	Starting AsyncAgent Runtime.Messaging.GatewaySender/GatewaySiloSender_0 on managed thread 33	
+[2017-10-17 14:45:40.020 GMT    12	INFO   	100929	OutsideRuntimeClient	192.168.1.109:0]	---------- Started OutsideRuntimeClient with Global Client ID: C192.168.1.109:0:-245947539*cli/8c4c72b7@9cb3a78d, client GUID ID: *cli/8c4c72b7	
+[2017-10-17 14:45:40.278 GMT     1	INFO   	100000	AssemblyLoader.Client	192.168.1.109:0]	Recursively searching for assemblies in C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug...	
+[2017-10-17 14:45:40.290 GMT     1	INFO   	100000	AssemblyLoader.Client	192.168.1.109:0]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\GrainInterfaces.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:40.294 GMT     1	INFO   	100000	AssemblyLoader.Client	192.168.1.109:0]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\HelloGrains.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:40.299 GMT     1	INFO   	100000	AssemblyLoader.Client	192.168.1.109:0]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\Microsoft.CodeAnalysis.CSharp.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:40.305 GMT     1	INFO   	100000	AssemblyLoader.Client	192.168.1.109:0]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\Microsoft.CodeAnalysis.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:40.308 GMT     1	INFO   	100000	AssemblyLoader.Client	192.168.1.109:0]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:40.317 GMT     1	INFO   	100000	AssemblyLoader.Client	192.168.1.109:0]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\Microsoft.Extensions.DependencyInjection.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:40.326 GMT     1	INFO   	100000	AssemblyLoader.Client	192.168.1.109:0]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\Microsoft.Win32.Primitives.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:40.333 GMT     1	INFO   	100000	AssemblyLoader.Client	192.168.1.109:0]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\Newtonsoft.Json.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:40.342 GMT     1	INFO   	100000	AssemblyLoader.Client	192.168.1.109:0]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\Orleans.dll
+	* Assembly filename is excluded.	
+[2017-10-17 14:45:40.344 GMT     1	INFO   	100000	AssemblyLoader.Client	192.168.1.109:0]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\OrleansCodeGenerator.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:40.349 GMT     1	INFO   	100000	AssemblyLoader.Client	192.168.1.109:0]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\OrleansRuntime.dll
+	* Assembly filename is excluded.	
+[2017-10-17 14:45:40.354 GMT     1	INFO   	100000	AssemblyLoader.Client	192.168.1.109:0]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\OrleansTelemetryConsumers.Counters.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:40.360 GMT     1	INFO   	100000	AssemblyLoader.Client	192.168.1.109:0]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.AppContext.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:40.364 GMT     1	INFO   	100000	AssemblyLoader.Client	192.168.1.109:0]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Collections.Immutable.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:40.370 GMT     1	INFO   	100000	AssemblyLoader.Client	192.168.1.109:0]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Console.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:40.373 GMT     1	INFO   	100000	AssemblyLoader.Client	192.168.1.109:0]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:40.375 GMT     1	INFO   	100000	AssemblyLoader.Client	192.168.1.109:0]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Diagnostics.FileVersionInfo.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:40.380 GMT     1	INFO   	100000	AssemblyLoader.Client	192.168.1.109:0]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Diagnostics.StackTrace.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:40.385 GMT     1	INFO   	100000	AssemblyLoader.Client	192.168.1.109:0]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Globalization.Calendars.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:40.390 GMT     1	INFO   	100000	AssemblyLoader.Client	192.168.1.109:0]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.IO.Compression.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:40.394 GMT     1	INFO   	100000	AssemblyLoader.Client	192.168.1.109:0]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.IO.Compression.ZipFile.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:40.397 GMT     1	INFO   	100000	AssemblyLoader.Client	192.168.1.109:0]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.IO.FileSystem.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:40.403 GMT     1	INFO   	100000	AssemblyLoader.Client	192.168.1.109:0]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.IO.FileSystem.Primitives.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:40.407 GMT     1	INFO   	100000	AssemblyLoader.Client	192.168.1.109:0]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Net.Http.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:40.413 GMT     1	INFO   	100000	AssemblyLoader.Client	192.168.1.109:0]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Net.Sockets.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:40.417 GMT     1	INFO   	100000	AssemblyLoader.Client	192.168.1.109:0]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Reflection.Metadata.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:40.425 GMT     1	INFO   	100000	AssemblyLoader.Client	192.168.1.109:0]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:40.429 GMT     1	INFO   	100000	AssemblyLoader.Client	192.168.1.109:0]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Security.Cryptography.Algorithms.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:40.435 GMT     1	INFO   	100000	AssemblyLoader.Client	192.168.1.109:0]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Security.Cryptography.Encoding.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:40.439 GMT     1	INFO   	100000	AssemblyLoader.Client	192.168.1.109:0]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Security.Cryptography.Primitives.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:40.446 GMT     1	INFO   	100000	AssemblyLoader.Client	192.168.1.109:0]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Security.Cryptography.X509Certificates.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:40.450 GMT     1	INFO   	100000	AssemblyLoader.Client	192.168.1.109:0]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Text.Encoding.CodePages.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:40.459 GMT     1	INFO   	100000	AssemblyLoader.Client	192.168.1.109:0]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Threading.Thread.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:40.463 GMT     1	INFO   	100000	AssemblyLoader.Client	192.168.1.109:0]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.ValueTuple.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:40.468 GMT     1	INFO   	100000	AssemblyLoader.Client	192.168.1.109:0]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Xml.ReaderWriter.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:40.472 GMT     1	INFO   	100000	AssemblyLoader.Client	192.168.1.109:0]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Xml.XmlDocument.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:40.479 GMT     1	INFO   	100000	AssemblyLoader.Client	192.168.1.109:0]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Xml.XPath.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:40.483 GMT     1	INFO   	100000	AssemblyLoader.Client	192.168.1.109:0]	User assembly ignored: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\System.Xml.XPath.XDocument.dll
+	* Assembly contains no types assignable from Orleans.Providers.IProvider.	
+[2017-10-17 14:45:40.492 GMT     1	INFO   	100000	AssemblyLoader.Client	192.168.1.109:0]	Loading assembly C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\OrleansProviders.dll...	
+[2017-10-17 14:45:40.496 GMT     1	INFO   	100000	AssemblyLoader.Client	192.168.1.109:0]	1 assemblies loaded.	
+[2017-10-17 14:45:40.502 GMT     1	WARNING	100153	OutsideRuntimeClient	192.168.1.109:0]	Unable to set unobserved exception handler because it was already set.	
+[2017-10-17 14:45:40.513 GMT     1	INFO   	100313	OutsideRuntimeClient	192.168.1.109:0]	---------- Initializing OutsideRuntimeClient on DESKTOP-VA6L48V at 192.168.1.109 Client Id = *cli/6da83a9b ----------	
+[2017-10-17 14:45:40.518 GMT     1	INFO   	100314	OutsideRuntimeClient	192.168.1.109:0]	---------- Starting OutsideRuntimeClient with runtime Version='1.5.1.0 (Release).' in AppDomain=<AppDomain.Id=1, AppDomain.FriendlyName=Host.exe> Config= 
+ Platform version info:
+   Orleans version: 1.5.1.0 (Release).
+   .NET version: 4.0.30319.42000
+   OS version: Microsoft Windows NT 6.2.9200.0
+   App config file: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\Host.exe.Config
+   GC Type=Server GCLatencyMode=Batch
+   Host: DESKTOP-VA6L48V
+   Processor Count: 4
+Client Configuration:
+   Config File Name: 
+   Start time: 2017-10-17 14:45:40.518 GMT
+   Gateway Provider: Config
+   Gateways[1]:
+      127.0.0.1:40000
+   Preferred Gateway Index: -1
+   GatewayListRefreshPeriod: 00:01:00
+   Preferred Address Family: InterNetwork
+   DNS Host Name: DESKTOP-VA6L48V
+   Client Name: Client
+   Tracing: 
+     Default Trace Level: Info
+     TraceLevelOverrides: None
+     Trace to Console: True
+     Trace File Name: C:\Users\zacka\source\repos\OrleansTest(My First Orleans Application)\Host\bin\Debug\Client-2017-10-17-14.45.39.426Z.log
+     LargeMessageWarningThreshold: 85000
+     PropagateActivityId: False
+     BulkMessageLimit: 5
+   Statistics: 
+     MetricsTableWriteInterval: 00:00:30
+     PerfCounterWriteInterval: -00:00:00.0010000
+     LogWriteInterval: 00:05:00
+     WriteLogStatisticsToTable: True
+     StatisticsCollectionLevel: Info
+   Messaging:
+       Response timeout: 00:30:00
+       Maximum resend count: 0
+       Resend On Timeout: False
+       Maximum Socket Age: 10675199.02:48:05.4775807
+       Drop Expired Messages: True
+       Client Sender Buckets: 8192
+       Buffer Pool Buffer Size: 4096
+       Buffer Pool Max Size: 10000
+       Buffer Pool Preallocation Size: 250
+       Fallback serializer: 
+   .NET: 
+       .NET thread pool sizes - Min: Worker Threads=200 Completion Port Threads=200
+       .NET thread pool sizes - Max: Worker Threads=32767 Completion Port Threads=1000
+   Providers:
+       No providers configured.
+	
+[2017-10-17 14:45:40.534 GMT     4	INFO   	101309	Messaging.GatewayManager	192.168.1.109:0]	Found 1 knownGateways from Gateway listProvider [gwy.tcp://127.0.0.1:40000/0]	
+[2017-10-17 14:45:40.542 GMT     4	INFO   	100908	Messaging.GatewayConnection/GatewayClientSender_gwy.tcp://127.0.0.1:40000/0	192.168.1.109:0]	Connected to gateway at address gwy.tcp://127.0.0.1:40000/0 on trial 0.	
+[2017-10-17 14:45:40.542 GMT    32	INFO   	101301	Orleans.Messaging.Gateway	192.168.1.109:0]	Recorded opened socket from endpoint 127.0.0.1:2103, client ID *cli/6da83a9b.	
+[2017-10-17 14:45:40.551 GMT    36	INFO   	100000	Messaging.GatewayClientReceiver/gwy.tcp://127.0.0.1:40000/0	192.168.1.109:0]	Starting AsyncAgent Messaging.GatewayClientReceiver/gwy.tcp://127.0.0.1:40000/0 on managed thread 36	
+[2017-10-17 14:45:40.555 GMT    35	INFO   	100000	Messaging.GatewayConnection/GatewayClientSender_gwy.tcp://127.0.0.1:40000/0	192.168.1.109:0]	Starting AsyncAgent Messaging.GatewayConnection/GatewayClientSender_gwy.tcp://127.0.0.1:40000/0 on managed thread 35	
+[2017-10-17 14:45:40.567 GMT    37	INFO   	100000	Runtime.Messaging.GatewaySender/GatewaySiloSender_1	192.168.1.109:0]	Starting AsyncAgent Runtime.Messaging.GatewaySender/GatewaySiloSender_1 on managed thread 37	
+[2017-10-17 14:45:40.571 GMT    12	INFO   	100929	OutsideRuntimeClient	192.168.1.109:0]	---------- Started OutsideRuntimeClient with Global Client ID: C192.168.1.109:0:-245947540*cli/6da83a9b@fd4d5e93, client GUID ID: *cli/6da83a9b	
+[2017-10-17 14:45:54.513 GMT    30	INFO   	100328	Messaging.GatewayClientReceiver/gwy.tcp://127.0.0.1:40000/0	192.168.1.109:0]	Stopping AsyncAgent Messaging.GatewayClientReceiver/gwy.tcp://127.0.0.1:40000/0 that runs on managed thread 30	
+[2017-10-17 14:45:54.513 GMT    23	INFO   	101302	Orleans.Messaging.Gateway	192.168.1.109:0]	Recorded closed socket from endpoint 127.0.0.1:2102, client ID *cli/8c4c72b7.	
+[2017-10-17 14:45:54.518 GMT     1	INFO   	100000	OutsideRuntimeClient	192.168.1.109:0]	OutsideRuntimeClient.Reset(): client Id *cli/8c4c72b7	
+[2017-10-17 14:45:54.532 GMT    29	INFO   	100312	Messaging.GatewayConnection/GatewayClientSender_gwy.tcp://127.0.0.1:40000/0	192.168.1.109:0]	Stop request processed	
+[2017-10-17 14:45:54.534 GMT    29	INFO   	100328	Messaging.GatewayConnection/GatewayClientSender_gwy.tcp://127.0.0.1:40000/0	192.168.1.109:0]	Stopping AsyncAgent Messaging.GatewayConnection/GatewayClientSender_gwy.tcp://127.0.0.1:40000/0 that runs on managed thread 29	
+[2017-10-17 14:45:54.581 GMT     1	INFO   	100704	ClientLogStatistics	192.168.1.109:0]	Statistics: ^^^
+App.Requests.Latency.Average.Millis=8.000
+App.Requests.LatencyHistogram.Millis=[0.4096:0.8191]=10, [0.8192:1.6383]=8, [1.6384:3.2767]=3, [3.2768:6.5535]=29, [6.5536:13.1071]=8, [13.1072:26.2143]=1, [26.2144:52.4287]=1, [52.4288:104.8575]=2, [104.8576:209.7151]=1, 
+App.Requests.TimedOut.Current=0
+App.Requests.Total.Requests.Current=63
+Catalog.Activation.Collection.NumberOfCollections.Current=1
+Catalog.Activation.Created.Current=3
+Catalog.Activation.CurrentCount=3
+Catalog.Activation.Destroyed.Current=0
+Catalog.Activation.FailedToActivate.Current=0
+Client.ConnectedGatewayCount=0
+ConsistentRing.AverageRangePercentage=100.000
+ConsistentRing.MyRange.RingDistance=x100000000
+ConsistentRing.MyRange.RingPercentage=100.000
+ConsistentRing.Ring=[S127.0.0.1:22222:245947531 -> <MultiRange: Size=x100000000, %Ring=100.000%>]
+ConsistentRing.RingSize=1
+Directory.CacheSize=0
+Directory.Lookups.Cache.HitRatio=0, Delta=0
+Directory.Lookups.Cache.Issued.Current=0
+Directory.Lookups.Cache.Successes.Current=0
+Directory.Lookups.Full.Issued.Current=2
+Directory.Lookups.Local.Issued.Current=42
+Directory.Lookups.Local.Successes.Current=40
+Directory.Lookups.LocalDirectory.Issued.Current=44
+Directory.Lookups.LocalDirectory.Successes.Current=40
+Directory.Lookups.Remote.Received.Current=0
+Directory.Lookups.Remote.Sent.Current=0
+Directory.PartitionSize=5
+Directory.Registrations.Issued.Current=2
+Directory.Registrations.Local.Current=2
+Directory.Registrations.Remote.Received.Current=0
+Directory.Registrations.Remote.Sent.Current=0
+Directory.Registrations.SingleAct.Issued.Current=3
+Directory.Registrations.SingleAct.Local.Current=3
+Directory.Registrations.SingleAct.Remote.Received.Current=0
+Directory.Registrations.SingleAct.Remote.Sent.Current=0
+Directory.Ring=[S127.0.0.1:22222:245947531/2989614A]
+Directory.Ring.MyPortion.AverageRingPercentage=100.000
+Directory.Ring.MyPortion.RingDistance=0
+Directory.Ring.MyPortion.RingPercentage=0.000
+Directory.Ring.MyPredecessors=[]
+Directory.Ring.MySuccessors=[]
+Directory.Ring.RingSize=1
+Directory.UnRegistrations.Issued.Current=0
+Directory.UnRegistrations.Local.Current=0
+Directory.UnRegistrations.Remote.Received.Current=0
+Directory.UnRegistrations.Remote.Sent.Current=0
+Directory.UnRegistrationsMany.Issued.Current=0
+Directory.UnRegistrationsMany.Remote.Received.Current=0
+Directory.UnRegistrationsMany.Remote.Sent.Current=0
+Directory.Validations.Cache.Received.Current=0
+Directory.Validations.Cache.Sent.Current=0
+Dispatcher.NewPlacement.Current=2
+Gateway.ConnectedClients.Current=2
+Gateway.LoadShedding.Current=0
+Gateway.Received.Current=5
+Gateway.Sent.Current=5
+Grain.HelloGrains.HelloGrain.Current=1
+Grain.Orleans.Runtime.MembershipService.GrainBasedMembershipTable.Current=1
+Grain.Orleans.Runtime.ReminderService.GrainBasedReminderTable.Current=1
+Membership.ActiveCluster=[S127.0.0.1:22222:245947531]
+Membership.ActiveClusterSize=1
+MessageCenter.ReceiveQueueLength=0
+MessageCenter.SendQueueLength=0
+Messaging.Acceptor.AllocatedSocketEventArgs.Current=2
+Messaging.Acceptor.CheckedInSocketEventArgs.Current=1
+Messaging.Acceptor.CheckedOutSocketEventArgs.Current=2
+Messaging.Acceptor.InUseSocketEventArgs=1
+Messaging.Expired.AtDispatch.Current=0
+Messaging.Expired.AtInvoke.Current=0
+Messaging.Expired.AtReceive.Current=0
+Messaging.Expired.AtRespond.Current=0
+Messaging.Expired.AtSend.Current=0
+Messaging.Processing.ActivationData.All=0
+Messaging.Processing.Dispatcher.Processed.Errors.Direction.OneWay.Current=0
+Messaging.Processing.Dispatcher.Processed.Errors.Direction.Request.Current=0
+Messaging.Processing.Dispatcher.Processed.Errors.Direction.Response.Current=0
+Messaging.Processing.Dispatcher.Processed.Ok.Direction.OneWay.Current=0
+Messaging.Processing.Dispatcher.Processed.Ok.Direction.Request.Current=42
+Messaging.Processing.Dispatcher.Processed.Ok.Direction.Response.Current=0
+Messaging.Processing.Dispatcher.Processed.ReRoute.Direction.OneWay.Current=0
+Messaging.Processing.Dispatcher.Processed.ReRoute.Direction.Request.Current=0
+Messaging.Processing.Dispatcher.Processed.ReRoute.Direction.Response.Current=0
+Messaging.Processing.Dispatcher.Processed.Total.Current=42
+Messaging.Processing.Dispatcher.Received.Direction.OneWay.Current=0
+Messaging.Processing.Dispatcher.Received.Direction.Request.Current=42
+Messaging.Processing.Dispatcher.Received.Direction.Response.Current=0
+Messaging.Processing.Dispatcher.Received.OnActivationContext.Current=40
+Messaging.Processing.Dispatcher.Received.OnNullContext.Current=2
+Messaging.Processing.Dispatcher.Received.Total.Current=42
+Messaging.Processing.IGC.Forwarded.Current=0
+Messaging.Processing.IGC.ReRoute.Current=0
+Messaging.Processing.IGC.Resent.Current=0
+Messaging.Processing.IMA.Enqueued.ToActivationContex.Current=40
+Messaging.Processing.IMA.Enqueued.ToNullContex.Current=2
+Messaging.Processing.IMA.Enqueued.ToSystemTargetContex.Current=79
+Messaging.Processing.IMA.Received.Current=121
+Messaging.Received.BatchSize.PerSocketDirection.ClientToGateway=0.000
+Messaging.Received.BatchSize.PerSocketDirection.GatewayToClient=0.000
+Messaging.Received.BatchSize.PerSocketDirection.SiloToSilo=0.000
+Messaging.Received.BatchSizeBytesHistogram.Bytes.PerSocketDirection.ClientToGateway=
+Messaging.Received.BatchSizeBytesHistogram.Bytes.PerSocketDirection.GatewayToClient=
+Messaging.Received.BatchSizeBytesHistogram.Bytes.PerSocketDirection.SiloToSilo=
+Messaging.Received.Bytes.Header.Current=2190
+Messaging.Received.Bytes.Total.Current=6058
+Messaging.Received.Direction.OneWay.Current=0
+Messaging.Received.Direction.Request.Current=5
+Messaging.Received.Direction.Response.Current=5
+Messaging.Received.Messages.From.Null.Current=5
+Messaging.Received.Messages.From.S127.0.0.1:40000:0.Current=5
+Messaging.Received.Messages.Total.Current=10
+Messaging.Received.MessageSizeHistogram.Bytes=[128:255]=4, [256:511]=4, [1024:2047]=2, 
+Messaging.Rerouted.OneWay.Current=0
+Messaging.Rerouted.Request.Current=5
+Messaging.Rerouted.Response.Current=0
+Messaging.Sent.BatchSize.PerSocketDirection.ClientToGateway=0.000
+Messaging.Sent.BatchSize.PerSocketDirection.GatewayToClient=0.000
+Messaging.Sent.BatchSize.PerSocketDirection.SiloToSilo=0.000
+Messaging.Sent.BatchSizeBytesHistogram.Bytes.PerSocketDirection.ClientToGateway=
+Messaging.Sent.BatchSizeBytesHistogram.Bytes.PerSocketDirection.GatewayToClient=
+Messaging.Sent.BatchSizeBytesHistogram.Bytes.PerSocketDirection.SiloToSilo=
+Messaging.Sent.Bytes.Header.Current=2190
+Messaging.Sent.Bytes.Total.Current=6138
+Messaging.Sent.Direction.OneWay.Current=0
+Messaging.Sent.Direction.Request.Current=5
+Messaging.Sent.Direction.Response.Current=5
+Messaging.Sent.LocalMessages.Current=121
+Messaging.Sent.Messages.To.Null.Current=5
+Messaging.Sent.Messages.To.S127.0.0.1:40000:0.Current=5
+Messaging.Sent.Messages.Total.Current=10
+Messaging.Sent.MessageSizeHistogram.Bytes=[128:255]=4, [256:511]=4, [1024:2047]=2, 
+Networking.Sockets.ClientToGateway.Duplex.Closed.Current=2
+Networking.Sockets.ClientToGateway.Duplex.Opened.Current=4
+Networking.Sockets.GatewayToClient.Duplex.Closed.Current=0
+Networking.Sockets.GatewayToClient.Duplex.Opened.Current=0
+Networking.Sockets.Silo.Receiving.Closed.Current=0
+Networking.Sockets.Silo.Receiving.Opened.Current=0
+Networking.Sockets.Silo.Sending.Closed.Current=0
+Networking.Sockets.Silo.Sending.Opened.Current=0
+Queues.QueueSize.Instantaneous.Scheduler.LevelOne=0
+Reminders.AverageTardiness.Seconds=0 Secs
+Reminders.NumberOfActiveReminders=0
+Reminders.TicksDelivered.Current=0
+Runtime.CpuUsage=10.717
+Runtime.DOT.NET.ThreadPool.InUse.CompletionPortThreads=0
+Runtime.DOT.NET.ThreadPool.InUse.WorkerThreads=1
+Runtime.GC.AllocatedBytesInKbPerSec=0.000
+Runtime.GC.GenCollectonCount=gen0=5, gen1=2, gen2=2
+Runtime.GC.GenSizesKb=gen0=69090.41, gen1=2333.07, gen2=4942.78
+Runtime.GC.LargeObjectHeapSizeKb=6965.086
+Runtime.GC.NumberOfInducedGCs=2.000
+Runtime.GC.PercentOfTimeInGC=0.585
+Runtime.GC.PromotedFinalizationMemoryFromGen0Kb=0.000
+Runtime.GC.PromotedMemoryFromGen1Kb=0.000
+Runtime.GC.TotalMemoryKb=18609
+Runtime.IsOverloaded=False
+Runtime.Memory.AvailableMemoryMb=3499
+Runtime.Memory.TotalPhysicalMemoryMb=8192
+Runtime.Threads.AsynchAgent.Messaging.GatewayClientReceiver.Current=1
+Runtime.Threads.AsynchAgent.Messaging.GatewayConnection.Current=1
+Runtime.Threads.AsynchAgent.Runtime.GrainDirectory.AdaptiveDirectoryCacheMaintainer`1.Current=1
+Runtime.Threads.AsynchAgent.Runtime.GrainDirectory.GlobalSingleInstanceActivationMaintainer.Current=0
+Runtime.Threads.AsynchAgent.Runtime.Messaging.GatewayAcceptor.Current=0
+Runtime.Threads.AsynchAgent.Runtime.Messaging.GatewayClientCleanupAgent.Current=1
+Runtime.Threads.AsynchAgent.Runtime.Messaging.GatewaySender.Current=2
+Runtime.Threads.AsynchAgent.Runtime.Messaging.IncomingMessageAcceptor.Current=0
+Runtime.Threads.AsynchAgent.Runtime.Messaging.IncomingMessageAgent.Current=3
+Runtime.Threads.AsynchAgent.Runtime.Messaging.SiloMessageSender.Current=2
+Runtime.Threads.AsynchAgent.Runtime.Scheduler.WorkerPoolThread.Current=5
+Runtime.Threads.AsynchAgent.Runtime.Watchdog.Current=1
+Runtime.Threads.AsynchAgent.TotalThreadsCreated.Current=22
+Scheduler.NumLongQueueWaitTimes.Current=0
+Scheduler.NumLongRunningTurns.Current=0
+Scheduler.WorkItemGroupCount=16
+Serialization.BufferPool.AllocatedBuffers.Current=750
+Serialization.BufferPool.BuffersInPool=250
+Serialization.BufferPool.CheckedInBuffers.Current=807
+Serialization.BufferPool.CheckedOutBuffers.Current=937
+Serialization.BufferPool.DroppedBuffers.Current=0
+Serialization.BufferPool.DroppedTooLargeBuffers.Current=0
+Serialization.BufferPool.InUse.AllocatedAndNotInPool_Buffers=500
+Serialization.BufferPool.InUse.CheckedOutAndNotCheckedIn_Buffers=130
+Silo.StartTime=2017-10-17 14:45:31.165 GMT
+Storage.Activate.Errors.Current=0
+Storage.Activate.Total.Current=0
+Storage.Clear.Errors.Current=0
+Storage.Clear.Latency=0 Secs
+Storage.Clear.Total.Current=0
+Storage.Read.Errors.Current=0
+Storage.Read.Latency=0 Secs
+Storage.Read.Total.Current=0
+Storage.Write.Errors.Current=0
+Storage.Write.Latency=0 Secs
+Storage.Write.Total.Current=0
+SystemTarget..Current=3
+Watchdog.NumHealthChecks.Current=0
+	
+[2017-10-17 14:45:54.622 GMT     1	INFO   	100000	OutsideRuntimeClient	192.168.1.109:0]	OutsideRuntimeClient.ConstructorReset(): client Id *cli/8c4c72b7	
