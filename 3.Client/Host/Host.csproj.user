@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <StartAction>Project</StartAction>
+    <StartProgram>D:\code\GitHub\OrleansTest\3.Running in a Stand-Alone Silo\Host\bin\Debug\OrleansHost.exe</StartProgram>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <StartAction>Program</StartAction>
+    <StartProgram>D:\code\GitHub\OrleansTest\3.Running in a Stand-Alone Silo\Host\bin\Release\OrleansHost.exe</StartProgram>
+  </PropertyGroup>
+</Project>

@@ -7,3 +7,26 @@
 /.vs
 /OrleansTest(My First Orleans Application)/.vs/OrleansTest/v15/sqlite3
 /OrleansTest(Minimal Orleans Application)/.vs/OrleansTest/v15
+/2.Minimal Orleans Application/.vs/OrleansTest/v15
+/3.Client/.vs/OrleansTest/v15
+/3.Client/packages
+/3.Client/Host/bin
+/3.Client/Host/obj
+/3.Client/HelloGrains/obj
+/3.Client/HelloGrains/bin
+/3.Client/Client/bin
+/3.Client/GrainInterfaces/bin
+/2.Minimal Orleans Application/Host/bin
+/2.Minimal Orleans Application/GrainCollection/bin
+/2.Minimal Orleans Application/GrainInterfaces/bin
+/1.My First Orleans Application/GrainInterfaces/bin/Debug
+/1.My First Orleans Application/GrainInterfaces/obj/Debug
+/1.My First Orleans Application/HelloGrains/bin/Debug
+/1.My First Orleans Application/HelloGrains/obj/Debug
+/1.My First Orleans Application/Host/bin/Debug
+/1.My First Orleans Application/Host/obj/Debug
+/2.Minimal Orleans Application/GrainCollection/obj
+/2.Minimal Orleans Application/GrainInterfaces/obj
+/2.Minimal Orleans Application/Host/obj
+/3.Client/Client/obj
+/3.Client/GrainInterfaces/obj
