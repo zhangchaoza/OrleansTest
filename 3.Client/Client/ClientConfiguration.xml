@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ClientConfiguration xmlns="urn:orleans">
+  <Gateway Address="localhost" Port="40000"/>
+  <Gateway Address="47.92.143.45" Port="40000"/>
+</ClientConfiguration>

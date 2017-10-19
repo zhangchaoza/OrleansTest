@@ -14,8 +14,9 @@ namespace Host
         private static void Main(string[] args)
         {
             // First, configure and start a local silo
-            var siloConfig = ClusterConfiguration.LocalhostPrimarySilo();
+            var siloConfig = ClusterConfiguration.LocalhostPrimarySilo(22222,40000);
             var silo = new SiloHost("TestSilo", siloConfig);
+            silo.ConfigFileName = "OrleansConfiguration.xml";
             silo.InitializeOrleansSilo();
             silo.StartOrleansSilo();
 

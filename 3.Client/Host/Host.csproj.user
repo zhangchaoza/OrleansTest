@@ -8,4 +8,7 @@
     <StartAction>Program</StartAction>
     <StartProgram>D:\code\GitHub\OrleansTest\3.Running in a Stand-Alone Silo\Host\bin\Release\OrleansHost.exe</StartProgram>
   </PropertyGroup>
+  <PropertyGroup>
+    <ProjectView>ProjectFiles</ProjectView>
+  </PropertyGroup>
 </Project>
