@@ -30,3 +30,4 @@
 /2.Minimal Orleans Application/Host/obj
 /3.Client/Client/obj
 /3.Client/GrainInterfaces/obj
+/3.Client/Host/SiloHostConfiguration.xml
