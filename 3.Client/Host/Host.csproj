@@ -70,6 +70,9 @@
     <Reference Include="OrleansRuntime, Version=1.5.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Orleans.OrleansRuntime.1.5.2\lib\net461\OrleansRuntime.dll</HintPath>
     </Reference>
+    <Reference Include="OrleansSQLUtils, Version=1.5.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Orleans.OrleansSqlUtils.1.5.2\lib\net461\OrleansSQLUtils.dll</HintPath>
+    </Reference>
     <Reference Include="OrleansTelemetryConsumers.Counters, Version=1.5.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Orleans.OrleansTelemetryConsumers.Counters.1.5.2\lib\net461\OrleansTelemetryConsumers.Counters.dll</HintPath>
     </Reference>

@@ -1,12 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <OrleansConfiguration xmlns="urn:orleans">
   <Globals>
-    <SeedNode Address="localhost" Port="11111" />
+    <SystemStore SystemStoreType="SqlServer"
+                 DeploymentId="第一测试"
+                 DataConnectionString="Data Source=47.92.143.45;Initial Catalog=OrleansStore_TEST;Persist Security Info=True;User ID=sa;Password=hehaiandi@201202"/>
+    <!--<SeedNode Address="localhost" Port="11111" />-->
   </Globals>
   <Defaults>
     <!--与silo互动-->
     <Networking Address="localhost" Port="11111" />
-    
+
     <!--与client互动-->
     <ProxyingGateway Address="localhost" Port="30000" />
   </Defaults>

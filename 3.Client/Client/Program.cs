@@ -13,7 +13,7 @@ namespace Client
 
             while (true)
             {
-                Console.WriteLine("Write Id");
+                Console.WriteLine("Your Id");
                 if (!int.TryParse(Console.ReadLine(), out int id))
                 {
                     continue;
