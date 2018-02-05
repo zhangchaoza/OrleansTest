@@ -31,3 +31,11 @@
 /3.Client/Client/obj
 /3.Client/GrainInterfaces/obj
 /3.Client/Host/SiloHostConfiguration.xml
+/4.Orleans2/MySiloHost/bin
+/4.Orleans2/MySiloHost/obj
+/4.Orleans2/MyClient/bin
+/4.Orleans2/MyClient/obj
+/4.Orleans2/GrainInterfaces/bin
+/4.Orleans2/GrainInterfaces/obj
+/4.Orleans2/GrainImplement/bin
+/4.Orleans2/GrainImplement/obj
