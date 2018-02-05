@@ -1,0 +1,7 @@
+D:\code\GitHub\OrleansTest\4.Orleans2\GrainImplement\bin\Debug\netstandard2.0\GrainImplement.deps.json
+D:\code\GitHub\OrleansTest\4.Orleans2\GrainImplement\bin\Debug\netstandard2.0\GrainImplement.dll
+D:\code\GitHub\OrleansTest\4.Orleans2\GrainImplement\bin\Debug\netstandard2.0\GrainImplement.pdb
+D:\code\GitHub\OrleansTest\4.Orleans2\GrainImplement\bin\Debug\netstandard2.0\GrainInterfaces.dll
+D:\code\GitHub\OrleansTest\4.Orleans2\GrainImplement\bin\Debug\netstandard2.0\GrainInterfaces.pdb
+D:\code\GitHub\OrleansTest\4.Orleans2\GrainImplement\obj\Debug\netstandard2.0\codegen\GrainImplement.csproj.CoreCompileInputs.cache
+D:\code\GitHub\OrleansTest\4.Orleans2\GrainImplement\obj\Debug\netstandard2.0\codegen\GrainImplement.AssemblyInfoInputs.cache

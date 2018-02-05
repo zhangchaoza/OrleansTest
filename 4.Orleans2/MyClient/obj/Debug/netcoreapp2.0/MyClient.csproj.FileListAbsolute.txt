@@ -1,0 +1,12 @@
+D:\code\GitHub\OrleansTest\4.Orleans2\MyClient\bin\Debug\netcoreapp2.0\MyClient.deps.json
+D:\code\GitHub\OrleansTest\4.Orleans2\MyClient\bin\Debug\netcoreapp2.0\MyClient.runtimeconfig.json
+D:\code\GitHub\OrleansTest\4.Orleans2\MyClient\bin\Debug\netcoreapp2.0\MyClient.runtimeconfig.dev.json
+D:\code\GitHub\OrleansTest\4.Orleans2\MyClient\bin\Debug\netcoreapp2.0\MyClient.dll
+D:\code\GitHub\OrleansTest\4.Orleans2\MyClient\bin\Debug\netcoreapp2.0\MyClient.pdb
+D:\code\GitHub\OrleansTest\4.Orleans2\MyClient\bin\Debug\netcoreapp2.0\GrainInterfaces.dll
+D:\code\GitHub\OrleansTest\4.Orleans2\MyClient\bin\Debug\netcoreapp2.0\GrainInterfaces.pdb
+D:\code\GitHub\OrleansTest\4.Orleans2\MyClient\obj\Debug\netcoreapp2.0\MyClient.csproj.CoreCompileInputs.cache
+D:\code\GitHub\OrleansTest\4.Orleans2\MyClient\obj\Debug\netcoreapp2.0\MyClient.AssemblyInfoInputs.cache
+D:\code\GitHub\OrleansTest\4.Orleans2\MyClient\obj\Debug\netcoreapp2.0\MyClient.AssemblyInfo.cs
+D:\code\GitHub\OrleansTest\4.Orleans2\MyClient\obj\Debug\netcoreapp2.0\MyClient.dll
+D:\code\GitHub\OrleansTest\4.Orleans2\MyClient\obj\Debug\netcoreapp2.0\MyClient.pdb
