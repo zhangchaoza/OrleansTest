@@ -38,6 +38,8 @@ namespace Host
             //var result = friend.SayHello("Goodbye").Result;
             //Console.WriteLine(result);
 
+
+
             Console.WriteLine("\nPress Enter to terminate...");
             Console.ReadLine();
 

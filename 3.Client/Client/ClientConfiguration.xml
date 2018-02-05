@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ClientConfiguration xmlns="urn:orleans">
 
-  <SystemStore SystemStoreType="SqlServer"
+  <!--<SystemStore SystemStoreType="SqlServer"
                DeploymentId="第一测试"
-               DataConnectionString="Data Source=47.92.143.45;Initial Catalog=OrleansStore_TEST;Persist Security Info=True;User ID=sa;Password=hehaiandi@201202"/>
+               DataConnectionString="Data Source=47.92.143.45;Initial Catalog=OrleansStore_TEST;Persist Security Info=True;User ID=sa;Password=hehaiandi@201202"/>-->
 
-  <!--<Gateway Address="47.92.143.45" Port="30000"/>-->
+  <Gateway Address="localhost" Port="30000"/>
 </ClientConfiguration>

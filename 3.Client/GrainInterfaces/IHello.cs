@@ -9,5 +9,12 @@ namespace GrainInterfaces
     public interface IHello : IGrainWithIntegerKey
     {
         Task<string> SayHello(string msg);
+
+        Task Subscribe(IChat observer);
+
+        Task UnSubscribe(IChat observer);
+
+        Task SendUpdateMessage(string message);
     }
+
 }
