@@ -36,7 +36,10 @@ namespace MySiloHost
 
             var builder = new SiloHostBuilder()
                 .UseConfiguration(config)
-                .ConfigureApplicationParts(parts => parts.AddApplicationPart(typeof(HelloGrain).Assembly).WithReferences())
+                .ConfigureApplicationParts(parts =>
+                    parts
+                    .AddApplicationPart(typeof(HelloGrain).Assembly)
+                    .WithReferences())
                 .ConfigureLogging(logging => logging.AddConsole());
 
             var host = builder.Build();
