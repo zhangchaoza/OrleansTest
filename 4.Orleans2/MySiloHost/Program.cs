@@ -10,9 +10,9 @@ namespace MySiloHost
 {
     class Program
     {
-        static void Main(string[] args) => RunAsync().Wait();
+        static int Main(string[] args) => RunAsync().Result;
 
-        static async Task RunAsync()
+        static async Task<int> RunAsync()
         {
             try
             {
@@ -21,17 +21,22 @@ namespace MySiloHost
                 Console.ReadLine();
 
                 await host.StopAsync();
+                return 0;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
+                return 1;
             }
         }
 
         private static async Task<ISiloHost> StartSilo()
         {
+            var config = new ClusterConfiguration();
+            config.LoadFromFile("HostConfig.xml");
+
             // define the cluster configuration
-            var config = ClusterConfiguration.LocalhostPrimarySilo();
+            // var config = ClusterConfiguration.LocalhostPrimarySilo();
             config.AddMemoryStorageProvider();
 
             var builder = new SiloHostBuilder()

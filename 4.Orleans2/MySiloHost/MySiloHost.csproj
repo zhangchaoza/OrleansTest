@@ -1,5 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
+    <Content Include="start.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="HostConfig.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\GrainInterfaces\GrainInterfaces.csproj"/>
     <ProjectReference Include="..\GrainImplement\GrainImplement.csproj"/>
   </ItemGroup>
@@ -7,6 +15,7 @@
     <PackageReference Include="Microsoft.Orleans.OrleansProviders" Version="2.0.0-beta3"/>
     <PackageReference Include="Microsoft.Orleans.OrleansRuntime" Version="2.0.0-beta3"/>
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="2.0.0"/>
+    <PackageReference Include="Microsoft.Orleans.Server" Version="2.0.0-beta3"/>
   </ItemGroup>
   <PropertyGroup>
     <OutputType>Exe</OutputType>

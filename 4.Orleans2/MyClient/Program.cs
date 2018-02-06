@@ -10,10 +10,7 @@ namespace MyClient
 {
     public class Program
     {
-        static int Main(string[] args)
-        {
-            return RunMainAsync().Result;
-        }
+        static int Main(string[] args) => RunMainAsync().Result;
 
         private static async Task<int> RunMainAsync()
         {
@@ -22,6 +19,8 @@ namespace MyClient
                 using (var client = await StartClientWithRetries())
                 {
                     await DoClientWork(client);
+
+                    Console.WriteLine("\nPress 任意键退出。");
                     Console.ReadKey();
                 }
 
@@ -34,7 +33,7 @@ namespace MyClient
             }
         }
 
-        private static async Task<IClusterClient> StartClientWithRetries(int initializeAttemptsBeforeFailing = 5)
+        private static async Task<IClusterClient> StartClientWithRetries(int initializeAttemptsBeforeFailing = -1)
         {
             int attempt = 0;
             IClusterClient client;
@@ -42,7 +41,8 @@ namespace MyClient
             {
                 try
                 {
-                    var config = ClientConfiguration.LocalhostSilo();
+                    var config = ClientConfiguration.LoadFromFile("ClientConfig.xml");
+                    // var config = ClientConfiguration.LocalhostSilo();
                     client = new ClientBuilder()
                         .UseConfiguration(config)
                         .ConfigureApplicationParts(parts => parts.AddApplicationPart(typeof(IHello).Assembly).WithReferences())
@@ -57,7 +57,7 @@ namespace MyClient
                 {
                     attempt++;
                     Console.WriteLine($"Attempt {attempt} of {initializeAttemptsBeforeFailing} failed to initialize the Orleans client.");
-                    if (attempt > initializeAttemptsBeforeFailing)
+                    if (initializeAttemptsBeforeFailing > 0 && (attempt > initializeAttemptsBeforeFailing))
                     {
                         throw;
                     }
@@ -70,10 +70,19 @@ namespace MyClient
 
         private static async Task DoClientWork(Orleans.IClusterClient client)
         {
-            // example of calling grains from the initialized client
             var friend = client.GetGrain<IHello>(0);
-            var response = await friend.SayHello("Good morning, my friend!");
-            Console.WriteLine("\n\n{0}\n\n", response);
+            while (true)
+            {
+                Console.WriteLine("输入消息(exit 退出)：");
+                var message = Console.ReadLine();
+                if (message == "exit")
+                {
+                    await friend.SayHello("bye!");
+                    break;
+                }
+                var response = await friend.SayHello(message);
+                Console.WriteLine("\n\n{0}\n\n", response);
+            }
         }
     }
 }
