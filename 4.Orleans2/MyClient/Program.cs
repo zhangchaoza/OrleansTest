@@ -1,13 +1,79 @@
 ﻿using System;
+using System.Threading.Tasks;
+using GrainInterfaces;
+using Microsoft.Extensions.Logging;
+using Orleans;
+using Orleans.Runtime;
+using Orleans.Runtime.Configuration;
 
 namespace MyClient
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        static int Main(string[] args)
         {
-            Console.WriteLine("\nPress 任意键退出。");
-            Console.ReadLine();
+            return RunMainAsync().Result;
+        }
+
+        private static async Task<int> RunMainAsync()
+        {
+            try
+            {
+                using (var client = await StartClientWithRetries())
+                {
+                    await DoClientWork(client);
+                    Console.ReadKey();
+                }
+
+                return 0;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return 1;
+            }
+        }
+
+        private static async Task<IClusterClient> StartClientWithRetries(int initializeAttemptsBeforeFailing = 5)
+        {
+            int attempt = 0;
+            IClusterClient client;
+            while (true)
+            {
+                try
+                {
+                    var config = ClientConfiguration.LocalhostSilo();
+                    client = new ClientBuilder()
+                        .UseConfiguration(config)
+                        .ConfigureApplicationParts(parts => parts.AddApplicationPart(typeof(IHello).Assembly).WithReferences())
+                        .ConfigureLogging(logging => logging.AddConsole())
+                        .Build();
+
+                    await client.Connect();
+                    Console.WriteLine("Client successfully connect to silo host");
+                    break;
+                }
+                catch (SiloUnavailableException)
+                {
+                    attempt++;
+                    Console.WriteLine($"Attempt {attempt} of {initializeAttemptsBeforeFailing} failed to initialize the Orleans client.");
+                    if (attempt > initializeAttemptsBeforeFailing)
+                    {
+                        throw;
+                    }
+                    await Task.Delay(TimeSpan.FromSeconds(4));
+                }
+            }
+
+            return client;
+        }
+
+        private static async Task DoClientWork(Orleans.IClusterClient client)
+        {
+            // example of calling grains from the initialized client
+            var friend = client.GetGrain<IHello>(0);
+            var response = await friend.SayHello("Good morning, my friend!");
+            Console.WriteLine("\n\n{0}\n\n", response);
         }
     }
 }
