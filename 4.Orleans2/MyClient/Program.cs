@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using GrainInterfaces;
 using Microsoft.Extensions.Logging;
 using Orleans;
+using Orleans.Hosting;
 using Orleans.Runtime;
 using Orleans.Runtime.Configuration;
 
@@ -29,6 +30,7 @@ namespace MyClient
             catch (Exception e)
             {
                 Console.WriteLine(e);
+                Console.ReadLine();
                 return 1;
             }
         }
@@ -45,8 +47,13 @@ namespace MyClient
                     // var config = ClientConfiguration.LocalhostSilo();
                     client = new ClientBuilder()
                         .UseConfiguration(config)
-                        .ConfigureApplicationParts(parts => parts.AddApplicationPart(typeof(IHello).Assembly).WithReferences())
-                        .ConfigureLogging(logging => logging.AddConsole())
+                        .ConfigureApplicationParts(parts => parts
+                            .AddFromAppDomain()
+                            .WithReferences())
+                        .ConfigureLogging(logging => logging
+                            .AddFilter("Orleans", LogLevel.Information)
+                            .SetMinimumLevel(LogLevel.Debug)
+                            .AddConsole())
                         .Build();
 
                     await client.Connect();

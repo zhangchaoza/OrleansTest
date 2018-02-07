@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using Orleans;
 using Orleans.Hosting;
 using GrainImplement;
+using Orleans.ApplicationParts;
 
 namespace MySiloHost
 {
@@ -41,11 +42,17 @@ namespace MySiloHost
 
             var builder = new SiloHostBuilder()
                 .UseConfiguration(config)
-                .ConfigureApplicationParts(parts =>
-                    parts
-                    .AddApplicationPart(typeof(HelloGrain).Assembly)
-                    .WithReferences())
-                .ConfigureLogging(logging => logging.AddConsole());
+                .ConfigureApplicationParts(parts => parts
+                    // .AddApplicationPart(typeof(HelloGrain).Assembly)
+                    .AddFromApplicationBaseDirectory()
+                    .WithCodeGeneration()
+                    // .AddFromApplicationBaseDirectory()
+                    //.WithReferences()
+                    )
+                .ConfigureLogging(logging => logging
+                    .AddFilter("Orleans", LogLevel.Information)
+                    .SetMinimumLevel(LogLevel.Debug)
+                    .AddConsole());
 
             var host = builder.Build();
             await host.StartAsync();
