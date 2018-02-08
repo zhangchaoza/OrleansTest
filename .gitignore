@@ -8,6 +8,7 @@
 /OrleansTest(My First Orleans Application)/.vs/OrleansTest/v15/sqlite3
 /OrleansTest(Minimal Orleans Application)/.vs/OrleansTest/v15
 /2.Minimal Orleans Application/.vs/OrleansTest/v15
+/2.Client/packages
 /3.Client/.vs/OrleansTest/v15
 /3.Client/packages
 /3.Client/Host/bin
@@ -39,3 +40,12 @@
 /4.Orleans2/GrainInterfaces/obj
 /4.Orleans2/GrainImplement/bin
 /4.Orleans2/GrainImplement/obj
+/2.Minimal Orleans Application/packages
+/1.My First Orleans Application/packages
+/1.My First Orleans Application/HelloGrains/bin/Release
+/1.My First Orleans Application/HelloGrains/obj/Release
+/1.My First Orleans Application/Host/bin/Release
+/1.My First Orleans Application/Host/obj/Release
+/1.My First Orleans Application/.vs/OrleansTest/v15/Server/sqlite3
+/1.My First Orleans Application/GrainInterfaces/bin/Release
+/1.My First Orleans Application/GrainInterfaces/obj/Release
