@@ -1,11 +1,17 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using Common;
 using GrainInterfaces;
+using System;
+using System.ComponentModel;
+using System.Net;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Orleans;
+using Orleans.Configuration;
 using Orleans.Hosting;
 using Orleans.Runtime;
 using Orleans.Runtime.Configuration;
+using System.IO;
 
 namespace MyClient
 {
@@ -15,6 +21,8 @@ namespace MyClient
 
         private static async Task<int> RunMainAsync()
         {
+            await InitAsync();
+
             try
             {
                 using (var client = await StartClientWithRetries())
@@ -43,10 +51,26 @@ namespace MyClient
             {
                 try
                 {
-                    var config = ClientConfiguration.LoadFromFile("ClientConfig.xml");
-                    // var config = ClientConfiguration.LocalhostSilo();
+                    IConfiguration clientConfig = new ConfigurationBuilder()
+                        .SetBasePath(Directory.GetCurrentDirectory())
+                        .AddIniFile("init\\ClientConfig.ini", optional: false, reloadOnChange: false)
+                        .Build();
+
+                    IConfiguration servicesConfig = new ConfigurationBuilder()
+                        .SetBasePath(Directory.GetCurrentDirectory())
+                        .AddIniFile("init\\ServicesConfig.ini", optional: false, reloadOnChange: false)
+                        .Build();
+
+                    // var ip = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 40000);
+                    // var gateUri = ip.ToGatewayUri();
+                    // var a = ConfigurationBinder.Get<StaticGatewayListProviderOptions>(servicesConfig.GetSection("StaticGatewayListProviderOptions"));
+                    // var aaa = TypeDescriptor.GetConverter(typeof(Uri));
+                    // var u = aaa.ConvertTo(gateUri, typeof(string));
+
                     client = new ClientBuilder()
-                        .UseConfiguration(config)
+                        .UseStaticClustering()
+                        .Configure<ClusterOptions>(clientConfig.GetSection("ClusterOptions"))
+                        .Configure<StaticGatewayListProviderOptions>(servicesConfig.GetSection("StaticGatewayListProviderOptions"))
                         .ConfigureApplicationParts(parts => parts
                             .AddFromAppDomain()
                             .WithReferences())
@@ -90,6 +114,12 @@ namespace MyClient
                 var response = await friend.SayHello(message);
                 Console.WriteLine("\n\n{0}\n\n", response);
             }
+        }
+
+        private static async Task InitAsync()
+        {
+            TypeDescriptor.AddAttributes(typeof(IPEndPoint), new TypeConverterAttribute(typeof(IdEndPointConverter)));
+            await Task.CompletedTask;
         }
     }
 }

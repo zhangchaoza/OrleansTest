@@ -15,6 +15,17 @@
                 "reveal": "silent"
             },
             "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "run silo",
+            "command": "./run_silo.ps1",
+            "type": "shell",
+            "isBackground": false,
+            "group": "none",
+            "presentation": {
+                "reveal": "always"
+            },
+            "problemMatcher": "$msCompile"
         }
     ]
 }
