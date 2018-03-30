@@ -35,11 +35,17 @@ namespace MyClient
 
                 return 0;
             }
-            catch (Exception e)
+            catch (Exception)
             {
+#if DEBUG
+
+                throw;
+#else
+
                 Console.WriteLine(e);
                 Console.ReadLine();
                 return 1;
+#endif
             }
         }
 
@@ -66,9 +72,17 @@ namespace MyClient
                     // var a = ConfigurationBinder.Get<StaticGatewayListProviderOptions>(servicesConfig.GetSection("StaticGatewayListProviderOptions"));
                     // var aaa = TypeDescriptor.GetConverter(typeof(Uri));
                     // var u = aaa.ConvertTo(gateUri, typeof(string));
+                    // var b = aaa.CanConvertFrom(typeof(string));
+                    // var c = (Uri)aaa.ConvertFrom("gwy.tcp://localhost:40000/0");
+                    // var c2 = (Uri)aaa.ConvertFrom("gwy.tcp://10.0.113.30:40000/0");
 
                     client = new ClientBuilder()
+                        // .UseLocalhostClustering(40000)
                         .UseStaticClustering()
+                        // .UseStaticClustering(options =>
+                        // {
+                        //    var biubhi=options.Gateways;
+                        // })
                         .Configure<ClusterOptions>(clientConfig.GetSection("ClusterOptions"))
                         .Configure<StaticGatewayListProviderOptions>(servicesConfig.GetSection("StaticGatewayListProviderOptions"))
                         .ConfigureApplicationParts(parts => parts
@@ -84,13 +98,13 @@ namespace MyClient
                     Console.WriteLine("Client successfully connect to silo host");
                     break;
                 }
-                catch (SiloUnavailableException)
+                catch (SiloUnavailableException ex)
                 {
                     attempt++;
                     Console.WriteLine($"Attempt {attempt} of {initializeAttemptsBeforeFailing} failed to initialize the Orleans client.");
                     if (initializeAttemptsBeforeFailing > 0 && (attempt > initializeAttemptsBeforeFailing))
                     {
-                        throw;
+                        throw ex;
                     }
                     await Task.Delay(TimeSpan.FromSeconds(4));
                 }

@@ -6,3 +6,4 @@ D:\code\GitHub\OrleansTest\4.Orleans2\Common\obj\Debug\netstandard2.0\Common.Ass
 D:\code\GitHub\OrleansTest\4.Orleans2\Common\obj\Debug\netstandard2.0\Common.AssemblyInfo.cs
 D:\code\GitHub\OrleansTest\4.Orleans2\Common\obj\Debug\netstandard2.0\Common.dll
 D:\code\GitHub\OrleansTest\4.Orleans2\Common\obj\Debug\netstandard2.0\Common.pdb
+D:\code\GitHub\OrleansTest\4.Orleans2\Common\obj\Debug\netstandard2.0\Common.csprojResolveAssemblyReference.cache
