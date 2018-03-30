@@ -35,11 +35,11 @@ namespace MyClient
 
                 return 0;
             }
-            catch (Exception)
+            catch (Exception e)
             {
 #if DEBUG
 
-                throw;
+                throw e;
 #else
 
                 Console.WriteLine(e);
