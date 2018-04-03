@@ -56,7 +56,7 @@ namespace MySiloHost
         {
             IConfiguration hostConfig = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddIniFile("init\\HostConfig.ini", optional: false, reloadOnChange: false)
+                .AddIniFile(Path.Combine("init", "HostConfig.ini"), optional: false, reloadOnChange: false)
                 .Build();
 
             var builder = new SiloHostBuilder()
