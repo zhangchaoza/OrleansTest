@@ -177,33 +177,29 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ZhangcChao\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "/home/zack/.nuget/packages/": {},
+    "/usr/share/dotnet/sdk/NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\code\\GitHub\\OrleansTest\\4.Orleans2\\Common\\Common.csproj",
+      "projectUniqueName": "/home/zack/workstation/github/OrleansTest/4.Orleans2/Common/Common.csproj",
       "projectName": "Common",
-      "projectPath": "D:\\code\\GitHub\\OrleansTest\\4.Orleans2\\Common\\Common.csproj",
-      "packagesPath": "C:\\Users\\ZhangcChao\\.nuget\\packages\\",
-      "outputPath": "D:\\code\\GitHub\\OrleansTest\\4.Orleans2\\Common\\obj\\",
+      "projectPath": "/home/zack/workstation/github/OrleansTest/4.Orleans2/Common/Common.csproj",
+      "packagesPath": "/home/zack/.nuget/packages/",
+      "outputPath": "/home/zack/workstation/github/OrleansTest/4.Orleans2/Common/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "/usr/share/dotnet/sdk/NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\ZhangcChao\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/home/zack/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netstandard2.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "http://10.0.113.7:20000/nuget": {},
-        "https://api.nuget.org/v3/index.json": {},
-        "https://dotnet.myget.org/F/open-xml-sdk/api/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netstandard2.0": {
