@@ -87,11 +87,11 @@ namespace MySiloHost
                     .WithCodeGeneration()
                     // .AddFromApplicationBaseDirectory()
                     //.WithReferences()
-                    );
-                // .ConfigureLogging(logging => logging
-                //     .AddFilter("Orleans", LogLevel.Information)
-                //     .SetMinimumLevel(LogLevel.Debug)
-                //     .AddConsole());
+                    )
+                .ConfigureLogging(logging => logging
+                    .AddFilter("Orleans", LogLevel.Information)
+                    .SetMinimumLevel(LogLevel.Debug)
+                    .AddConsole());
 
             var host = builder.Build();
             await host.StartAsync();
