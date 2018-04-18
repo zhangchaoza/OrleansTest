@@ -62,12 +62,12 @@ namespace MyClient
                 {
                     IConfiguration clientConfig = new ConfigurationBuilder()
                         .SetBasePath(Directory.GetCurrentDirectory())
-                        .AddIniFile("init\\ClientConfig.ini", optional: false, reloadOnChange: false)
+                        .AddIniFile(Path.Combine("init", "ClientConfig.ini"), optional: false, reloadOnChange: false)
                         .Build();
 
                     IConfiguration servicesConfig = new ConfigurationBuilder()
                         .SetBasePath(Directory.GetCurrentDirectory())
-                        .AddIniFile("init\\ServicesConfig.ini", optional: false, reloadOnChange: false)
+                        .AddIniFile(Path.Combine("init", "ServicesConfig.ini"), optional: false, reloadOnChange: false)
                         .Build();
 
                     // var ip = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 40000);
