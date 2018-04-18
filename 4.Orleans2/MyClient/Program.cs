@@ -12,11 +12,14 @@ using Orleans.Hosting;
 using Orleans.Runtime;
 using Orleans.Runtime.Configuration;
 using System.IO;
+using System.Diagnostics;
 
 namespace MyClient
 {
     public class Program
     {
+        static readonly Random random = new Random();
+
         static int Main(string[] args) => RunMainAsync().Result;
 
         private static async Task<int> RunMainAsync()
@@ -125,7 +128,10 @@ namespace MyClient
                     await friend.SayHello("bye!");
                     break;
                 }
-                var response = await friend.SayHello(message);
+
+                var caculator = client.GetGrain<ICaculator>(Guid.Empty);
+                var num = await caculator.Add(random.Next(10000), random.Next(10000));
+                var response = await friend.SayHello($"{message},{num}");
                 Console.WriteLine("\n\n{0}\n\n", response);
             }
         }

@@ -203,6 +203,7 @@
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "http://10.0.113.7:20000/nuget": {},
         "https://api.nuget.org/v3/index.json": {},
+        "https://dotnet.myget.org/F/dotnet-core/api/v3/index.json": {},
         "https://dotnet.myget.org/F/open-xml-sdk/api/v3/index.json": {}
       },
       "frameworks": {

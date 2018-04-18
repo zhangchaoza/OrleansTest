@@ -60,8 +60,18 @@ namespace MySiloHost
                 .Build();
 
             var builder = new SiloHostBuilder()
+                .UseDashboard(options =>
+                {
+                    options.Username = "zack";
+                    options.Password = "123";
+                    options.Host = "*";
+                    options.Port = 20020;
+                    options.HostSelf = true;
+                })
                 .UseLocalhostClustering()
+                .AddMemoryGrainStorage("DevStore")
                 //.AddMemoryGrainStorageAsDefault()
+                .UseInMemoryReminderService()
                 .Configure<SiloOptions>(opt => opt.SiloName = Dns.GetHostName())
                 .Configure<ClusterOptions>(hostConfig.GetSection("ClusterOptions"))
                 .Configure<EndpointOptions>(hostConfig.GetSection("EndpointOptions"))
@@ -77,11 +87,11 @@ namespace MySiloHost
                     .WithCodeGeneration()
                     // .AddFromApplicationBaseDirectory()
                     //.WithReferences()
-                    )
-                .ConfigureLogging(logging => logging
-                    .AddFilter("Orleans", LogLevel.Information)
-                    .SetMinimumLevel(LogLevel.Debug)
-                    .AddConsole());
+                    );
+                // .ConfigureLogging(logging => logging
+                //     .AddFilter("Orleans", LogLevel.Information)
+                //     .SetMinimumLevel(LogLevel.Debug)
+                //     .AddConsole());
 
             var host = builder.Build();
             await host.StartAsync();

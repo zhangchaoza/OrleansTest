@@ -1,8 +1,9 @@
-using System.Threading.Tasks;
-
 namespace GrainInterfaces
 {
-    public interface IHello : Orleans.IGrainWithIntegerKey
+    using System.Threading.Tasks;
+    using Orleans;
+
+    public interface IHello : IGrainWithIntegerKey
     {
         Task<string> SayHello(string greeting);
 
