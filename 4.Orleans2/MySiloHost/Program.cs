@@ -15,6 +15,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel;
 using Common;
+using OrleansDashboard;
 
 namespace MySiloHost
 {
@@ -57,21 +58,31 @@ namespace MySiloHost
             IConfiguration hostConfig = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddIniFile(Path.Combine("init", "HostConfig.ini"), optional: false, reloadOnChange: false)
+                .AddIniFile(Path.Combine("init", "DashboardConfig.ini"), optional: false, reloadOnChange: false)
                 .Build();
 
             var builder = new SiloHostBuilder()
-                .UseDashboard(options =>
-                {
-                    options.Username = "zack";
-                    options.Password = "123";
-                    options.Host = "*";
-                    options.Port = 20020;
-                    options.HostSelf = true;
-                })
+                .UseDashboard()
+                // .UseDashboard(options =>
+                // {
+                //     options.Username = "zack";
+                //     options.Password = "123";
+                //     options.Host = "*";
+                //     options.Port = 20020;
+                //     options.HostSelf = true;
+                // })
                 .UseLocalhostClustering()
                 .AddMemoryGrainStorage("DevStore")
                 //.AddMemoryGrainStorageAsDefault()
                 .UseInMemoryReminderService()
+                .AddSimpleMessageStreamProvider("SMSProvider", op =>
+                {
+                    op.FireAndForgetDelivery = SimpleMessageStreamProviderOptions.DEFAULT_VALUE_FIRE_AND_FORGET_DELIVERY;
+                    op.OptimizeForImmutableData = SimpleMessageStreamProviderOptions.DEFAULT_VALUE_OPTIMIZE_FOR_IMMUTABLE_DATA;
+                    op.PubSubType = SimpleMessageStreamProviderOptions.DEFAULT_PUBSUB_TYPE;
+                })
+                .AddMemoryGrainStorage("PubSubStore")
+                .Configure<DashboardOptions>(hostConfig.GetSection("DashboardOptions"))
                 .Configure<SiloOptions>(opt => opt.SiloName = Dns.GetHostName())
                 .Configure<ClusterOptions>(hostConfig.GetSection("ClusterOptions"))
                 .Configure<EndpointOptions>(hostConfig.GetSection("EndpointOptions"))
@@ -89,7 +100,10 @@ namespace MySiloHost
                     //.WithReferences()
                     )
                 .ConfigureLogging(logging => logging
-                    .AddFilter("Orleans", LogLevel.Information)
+                    .AddFilter("Orleans", LogLevel.Warning)
+                    // .AddFilter("Orleans.Runtime.Management", LogLevel.Warning)
+                    // .AddFilter("Orleans.Runtime.SiloControl", LogLevel.Warning)
+                    // .AddFilter("Runtime", LogLevel.Warning)
                     .SetMinimumLevel(LogLevel.Debug)
                     .AddConsole());
 

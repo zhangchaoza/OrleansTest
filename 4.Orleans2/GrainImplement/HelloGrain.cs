@@ -14,6 +14,7 @@ namespace GrainImplement
     public class HelloGrain : Grain<HelloGrainState>, IHello, IRemindable
     {
         private readonly ILogger logger;
+        private IDisposable timer;
 
         public HelloGrain(ILogger<HelloGrain> logger)
         {
@@ -22,7 +23,20 @@ namespace GrainImplement
 
         public override Task OnActivateAsync()
         {
+            timer = RegisterTimer(async s =>
+            {
+                var guid = Guid.Empty;
+                var streamProvider = GetStreamProvider("SMSProvider");
+                var stream = streamProvider.GetStream<int>(guid, "RANDOMDATA");
+                await stream.OnNextAsync(new System.Random().Next());
+            }, null, TimeSpan.FromMilliseconds(1000), TimeSpan.FromMilliseconds(1000));
             return RegisterOrUpdateReminder("r1", TimeSpan.FromSeconds(10), TimeSpan.FromMinutes(1));
+        }
+
+        public override Task OnDeactivateAsync()
+        {
+            timer.Dispose();
+            return Task.CompletedTask;
         }
 
         public Task ReceiveReminder(string reminderName, TickStatus status)

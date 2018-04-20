@@ -2,8 +2,8 @@
 # $PSCommandPath
 $dictory = Split-Path -Parent $PSCommandPath
 Set-Location $dictory
-dotnet.exe publish -c Release -r win-x64
-dotnet.exe publish -c Release
+$dictory
+dotnet.exe publish -c release -r win-x64 --self-contained
 
 "完成，任意键退出"  ;
 Read-Host | Out-Null ;
