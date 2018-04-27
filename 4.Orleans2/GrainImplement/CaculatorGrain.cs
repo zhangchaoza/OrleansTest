@@ -20,5 +20,16 @@ namespace GrainImplement
                 return Task.FromResult(x + y);
             }
         }
+
+        public Task<ImmutableType> GetImmutable(ImmutableType x)
+        {
+            return Task.FromResult(x);
+        }
+
+        public Task<Immutable<byte[]>> ProcessRequest(Immutable<byte[]> request)
+        {
+            request.Value[0] = 1;
+            return Task.FromResult(request);
+        }
     }
 }

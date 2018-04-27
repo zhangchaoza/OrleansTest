@@ -21,6 +21,7 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.0.0" />
     <PackageReference Include="Microsoft.Orleans.Client" Version="2.0.0" />
     <PackageReference Include="Microsoft.Orleans.OrleansRuntime" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Orleans.OrleansConsulUtils" Version="2.0.0"/>
   </ItemGroup>
   <PropertyGroup>
     <OutputType>Exe</OutputType>

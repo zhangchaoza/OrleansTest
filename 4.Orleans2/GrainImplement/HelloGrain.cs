@@ -29,6 +29,7 @@ namespace GrainImplement
                 var streamProvider = GetStreamProvider("SMSProvider");
                 var stream = streamProvider.GetStream<int>(guid, "RANDOMDATA");
                 await stream.OnNextAsync(new System.Random().Next());
+                Console.WriteLine("SMSProvider-RANDOMDATA");
             }, null, TimeSpan.FromMilliseconds(1000), TimeSpan.FromMilliseconds(1000));
             return RegisterOrUpdateReminder("r1", TimeSpan.FromSeconds(10), TimeSpan.FromMinutes(1));
         }

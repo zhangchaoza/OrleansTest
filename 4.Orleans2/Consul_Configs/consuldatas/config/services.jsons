@@ -1,0 +1,18 @@
+{
+    "service": {
+        "name": "CAPlatform",
+        "tags": [
+            "master"
+        ],
+        "address": "10.0.113.14",
+        "port": 22100,
+        "enableTagOverride": false,
+        "check": {
+            "id": "CAPlatform",
+            "name": "CAPlatform on port 22100",
+            "tcp": "10.0.113.14:22100",
+            "interval": "10s",
+            "timeout": "1s"
+        }
+    }
+}

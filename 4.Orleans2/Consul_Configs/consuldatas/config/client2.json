@@ -1,0 +1,28 @@
+{
+    "datacenter": "DataCenter1",
+    "data_dir": "/usr/local/etc/consuldatas/data",
+    "log_level": "INFO",
+    "node_name": "c2",
+    "server": false,
+    "ui": true,
+    "bind_addr": "0.0.0.0",
+    "client_addr": "0.0.0.0",
+    "ports": {
+        "dns": 22000,
+        "http": 22001,
+        "https": 22002,
+        "server": 22003,
+        "serf_lan": 22004,
+        "serf_wan": 22005
+    },
+    "retry_join": [
+        "10.0.113.31:22004",
+        "10.0.113.32:22004",
+        "10.0.113.33:22004"
+    ],
+    "retry_interval": "3s",
+    "raft_protocol": 3,
+    "enable_debug": false,
+    "rejoin_after_leave": true,
+    "enable_syslog": false
+}

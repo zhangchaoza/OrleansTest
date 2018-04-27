@@ -71,7 +71,11 @@ namespace MySiloHost
                 //     options.Port = 20020;
                 //     options.HostSelf = true;
                 // })
-                .UseLocalhostClustering()
+                // .UseLocalhostClustering()
+                .UseConsulClustering(op =>
+                {
+                    op.Address = new Uri("http://127.0.0.1:8500");
+                })
                 .AddMemoryGrainStorage("DevStore")
                 //.AddMemoryGrainStorageAsDefault()
                 .UseInMemoryReminderService()
@@ -87,6 +91,7 @@ namespace MySiloHost
                 .Configure<ClusterOptions>(hostConfig.GetSection("ClusterOptions"))
                 .Configure<EndpointOptions>(hostConfig.GetSection("EndpointOptions"))
                 .Configure<DevelopmentClusterMembershipOptions>(hostConfig.GetSection("DevelopmentClusterMembershipOptions"))
+                .Configure<ConsulClusteringSiloOptions>(hostConfig.GetSection("ConsulClusteringSiloOptions"))
                 // .ConfigureServices((ctx, ss) =>
                 // {
                 //     ss.Configure<DevelopmentClusterMembershipOptions>(hostConfig.GetSection("DevelopmentClusterMembershipOptions"));

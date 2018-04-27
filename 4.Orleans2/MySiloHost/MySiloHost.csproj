@@ -26,6 +26,7 @@
     <PackageReference Include="Microsoft.Orleans.OrleansCodeGenerator" Version="2.0.0"/>
     <PackageReference Include="Microsoft.Orleans.OrleansCodeGenerator.Build" Version="2.0.0"/>
     <PackageReference Include="OrleansDashboard" Version="2.0.0"/>
+    <PackageReference Include="Microsoft.Orleans.OrleansConsulUtils" Version="2.0.0"/>
   </ItemGroup>
   <PropertyGroup>
     <OutputType>Exe</OutputType>

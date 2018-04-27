@@ -16,12 +16,14 @@ using System.IO;
 using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
+using Orleans.Concurrency;
 
 namespace MyClient
 {
     public class Program
     {
         static readonly Random random = new Random();
+        private static IList<StreamSubscriptionHandle<int>> subscriptionHandle;
 
         static async Task<int> Main(string[] args)
         {
@@ -42,21 +44,20 @@ namespace MyClient
             {
                 using (var client = await StartClientWithRetries())
                 {
-                    var subscriptionHandle = await SubscribeStream(client);
-                    await DoClientWorkREPL(client);
-                    // await DoClientWorkSimple(client);
-                    await Task.Delay(5000);
-                    await Task.WhenAll(subscriptionHandle.Select(h => h.UnsubscribeAsync()));
+                    // subscriptionHandle = await SubscribeStream(client);
+                    // await DoClientWorkREPL(client);
+                    await DoClientWorkSimple(client);
+                    // await Task.Delay(5000);
+                    // await Task.WhenAll(subscriptionHandle.Select(h => h.UnsubscribeAsync()));
                     await client.Close();
                 }
 
                 // Console.WriteLine("\nPress 任意键退出。");
                 // Console.ReadKey();
-                return 1;
+                return 0;
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                Console.WriteLine(e);
                 return 1;
             }
         }
@@ -90,15 +91,20 @@ namespace MyClient
 
                     client = new ClientBuilder()
                         // .UseLocalhostClustering(40000)
-                        .UseStaticClustering()
+                        // .UseStaticClustering()
+                        .UseConsulClustering(op =>
+                        {
+                            op.Address = new Uri("http://127.0.0.1:8500");
+                        })
                         // .UseStaticClustering(options =>
                         // {
                         //    var biubhi=options.Gateways;
                         // })
-                        .AddClusterConnectionLostHandler((s, e) => Console.WriteLine("已断开"))
-                        .AddSimpleMessageStreamProvider("SMSProvider")
+                        .AddClusterConnectionLostHandler(OnLost)
+                        // .AddSimpleMessageStreamProvider("SMSProvider")
                         .Configure<ClusterOptions>(clientConfig.GetSection("ClusterOptions"))
                         .Configure<StaticGatewayListProviderOptions>(servicesConfig.GetSection("StaticGatewayListProviderOptions"))
+                        .Configure<ConsulClusteringClientOptions>(servicesConfig.GetSection("ConsulClusteringClientOptions"))
                         .ConfigureApplicationParts(parts => parts
                             .AddFromAppDomain()
                             .WithReferences())
@@ -107,7 +113,7 @@ namespace MyClient
                             .AddFilter("Orleans.Runtime.Management", LogLevel.Warning)
                             .AddFilter("Orleans.Runtime.SiloControl", LogLevel.Warning)
                             .AddFilter("Runtime", LogLevel.Warning)
-                            .SetMinimumLevel(LogLevel.Debug)
+                            .SetMinimumLevel(LogLevel.None)
                             .AddConsole())
                         .Build();
 
@@ -149,6 +155,13 @@ namespace MyClient
             return shs;
         }
 
+        private static void OnLost(object sender, EventArgs e)
+        {
+            Console.WriteLine("已断开");
+            // Task.WhenAll(subscriptionHandle.Select(h => h.UnsubscribeAsync()));
+            // subscriptionHandle = SubscribeStream((IClusterClient)sender).Result;
+        }
+
         /// <summary>
         /// Read–Eval–Print Loop
         /// </summary>
@@ -156,7 +169,7 @@ namespace MyClient
         /// <returns></returns>
         private static async Task DoClientWorkREPL(IClusterClient client)
         {
-            var friend = client.GetGrain<IHello>(0);
+            var friend = client.GetGrain<IHello>(random.Next(100));
             while (true)
             {
                 Console.WriteLine("输入消息(exit 退出)：");
@@ -168,6 +181,11 @@ namespace MyClient
                 }
 
                 var caculator = client.GetGrain<ICaculator>(Guid.Empty);
+                var immutable = new ImmutableType(10);
+                var x = await caculator.GetImmutable(immutable);
+                var ibs = new Immutable<byte[]>(new byte[] { 0 });
+                var ibs2 = await caculator.ProcessRequest(ibs);
+
                 var num = await caculator.Add(random.Next(10000), random.Next(10000));
                 var response = await friend.SayHello($"{message},{num}");
                 Console.WriteLine("\n\n{0}\n\n", response);
@@ -176,11 +194,15 @@ namespace MyClient
 
         private static async Task DoClientWorkSimple(IClusterClient client)
         {
-            var friend = client.GetGrain<IHello>(0);
-            var caculator = client.GetGrain<ICaculator>(Guid.Empty);
-            var num = await caculator.Add(random.Next(10000), random.Next(10000));
-            var response = await friend.SayHello($"{num}");
-            Console.WriteLine("\n\n{0}\n\n", response);
+            while (true)
+            {
+                var friend = client.GetGrain<IHello>(random.Next(100));
+                var caculator = client.GetGrain<ICaculator>(Guid.Empty);
+                var num = await caculator.Add(random.Next(10000), random.Next(10000));
+                var response = await friend.SayHello($"{num}");
+                Console.WriteLine("\n\n{0}\n\n", response);
+                await Task.Delay(1000);
+            }
         }
 
         private static async Task InitAsync()
