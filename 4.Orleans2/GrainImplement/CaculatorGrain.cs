@@ -13,8 +13,16 @@ namespace GrainImplement
     [StatelessWorker(10)]
     public class CaculatorGrain : Grain, ICaculator
     {
+        private readonly ILogger logger;
+
+        public CaculatorGrain(ILogger<CaculatorGrain> logger)
+        {
+            this.logger = logger;
+        }
+
         public Task<int> Add(int x, int y)
         {
+            logger.LogInformation("Add:{0}+{1}", x, y);
             unchecked
             {
                 return Task.FromResult(x + y);

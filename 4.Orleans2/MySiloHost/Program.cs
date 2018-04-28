@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
 using Orleans;
 using Orleans.Hosting;
+using Orleans.Runtime.Configuration;
 using GrainImplement;
 using Orleans.ApplicationParts;
 using Orleans.Configuration;
@@ -16,6 +17,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Common;
 using OrleansDashboard;
+using MySiloHost.StartupTasks;
 
 namespace MySiloHost
 {
@@ -85,6 +87,14 @@ namespace MySiloHost
                     op.OptimizeForImmutableData = SimpleMessageStreamProviderOptions.DEFAULT_VALUE_OPTIMIZE_FOR_IMMUTABLE_DATA;
                     op.PubSubType = SimpleMessageStreamProviderOptions.DEFAULT_PUBSUB_TYPE;
                 })
+                // .AddPersistentStreams("SMSProvider_Persistent", (services, name) =>
+                // {
+                //     return null;
+                // }, streamConfigurator =>
+                // {
+
+                // })
+                .AddStartupTask<FirstStartupTask>()
                 .AddMemoryGrainStorage("PubSubStore")
                 .Configure<DashboardOptions>(hostConfig.GetSection("DashboardOptions"))
                 .Configure<SiloOptions>(opt => opt.SiloName = Dns.GetHostName())

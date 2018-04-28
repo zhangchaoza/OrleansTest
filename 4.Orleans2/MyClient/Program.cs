@@ -44,11 +44,11 @@ namespace MyClient
             {
                 using (var client = await StartClientWithRetries())
                 {
-                    // subscriptionHandle = await SubscribeStream(client);
+                    subscriptionHandle = await SubscribeStream(client);
                     // await DoClientWorkREPL(client);
-                    await DoClientWorkSimple(client);
+                    await DoClientWorkSimple(client, count: 20, helloId: 0);
                     // await Task.Delay(5000);
-                    // await Task.WhenAll(subscriptionHandle.Select(h => h.UnsubscribeAsync()));
+                    await Task.WhenAll(subscriptionHandle.Select(h => h.UnsubscribeAsync()));
                     await client.Close();
                 }
 
@@ -101,7 +101,7 @@ namespace MyClient
                         //    var biubhi=options.Gateways;
                         // })
                         .AddClusterConnectionLostHandler(OnLost)
-                        // .AddSimpleMessageStreamProvider("SMSProvider")
+                        .AddSimpleMessageStreamProvider("SMSProvider")
                         .Configure<ClusterOptions>(clientConfig.GetSection("ClusterOptions"))
                         .Configure<StaticGatewayListProviderOptions>(servicesConfig.GetSection("StaticGatewayListProviderOptions"))
                         .Configure<ConsulClusteringClientOptions>(servicesConfig.GetSection("ConsulClusteringClientOptions"))
@@ -144,7 +144,7 @@ namespace MyClient
             var subscriptionHandle = await stream.SubscribeAsync<int>(
                     async (data, token) =>
                     {
-                        await Task.Run(() => Console.WriteLine($"stream:{data}"));
+                        await Task.Run(() => Console.WriteLine($"SMSProvider-RANDOMDATA-RECEIVED:{data}"));
                     });
 
             var shs = await stream.GetAllSubscriptionHandles();
@@ -188,19 +188,20 @@ namespace MyClient
 
                 var num = await caculator.Add(random.Next(10000), random.Next(10000));
                 var response = await friend.SayHello($"{message},{num}");
-                Console.WriteLine("\n\n{0}\n\n", response);
+                Console.WriteLine("{0}", response);
             }
         }
 
-        private static async Task DoClientWorkSimple(IClusterClient client)
+        private static async Task DoClientWorkSimple(IClusterClient client, int count = -1, int helloId = -1)
         {
-            while (true)
+            int times = 0;
+            while (count == -1 | (++times) < count)
             {
-                var friend = client.GetGrain<IHello>(random.Next(100));
+                var friend = helloId == -1 ? client.GetGrain<IHello>(random.Next(100)) : client.GetGrain<IHello>(random.Next(helloId));
                 var caculator = client.GetGrain<ICaculator>(Guid.Empty);
                 var num = await caculator.Add(random.Next(10000), random.Next(10000));
                 var response = await friend.SayHello($"{num}");
-                Console.WriteLine("\n\n{0}\n\n", response);
+                Console.WriteLine("{0}", response);
                 await Task.Delay(1000);
             }
         }

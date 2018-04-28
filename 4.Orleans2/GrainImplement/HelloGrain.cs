@@ -15,6 +15,7 @@ namespace GrainImplement
     {
         private readonly ILogger logger;
         private IDisposable timer;
+        private readonly Random random = new System.Random();
 
         public HelloGrain(ILogger<HelloGrain> logger)
         {
@@ -28,8 +29,16 @@ namespace GrainImplement
                 var guid = Guid.Empty;
                 var streamProvider = GetStreamProvider("SMSProvider");
                 var stream = streamProvider.GetStream<int>(guid, "RANDOMDATA");
-                await stream.OnNextAsync(new System.Random().Next());
-                Console.WriteLine("SMSProvider-RANDOMDATA");
+                var msg = random.Next();
+                try
+                {
+                    await stream.OnNextAsync(msg/*, new SimpleStreamSequenceToken(msg)*/);
+                }
+                catch (System.Exception)
+                {
+                    throw;
+                }
+                Console.WriteLine($"SMSProvider-RANDOMDATA-SEND:{msg}");
             }, null, TimeSpan.FromMilliseconds(1000), TimeSpan.FromMilliseconds(1000));
             return RegisterOrUpdateReminder("r1", TimeSpan.FromSeconds(10), TimeSpan.FromMinutes(1));
         }
@@ -49,9 +58,10 @@ namespace GrainImplement
         async Task<string> IHello.SayHello(string greeting)
         {
             logger.LogInformation($"+++SayHello message received: greeting = '{greeting}',last message is '{State.LastMessage}'");
+            var feedback = $"You said: '{greeting}', I say: {State.LastMessage}!";
             State.LastMessage = greeting;
             await base.WriteStateAsync();
-            return $"You said: '{greeting}', I say: Hello!";
+            return feedback;
         }
 
     }
