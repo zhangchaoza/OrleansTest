@@ -46,7 +46,8 @@ namespace MyClient
                 {
                     subscriptionHandle = await SubscribeStream(client);
                     // await DoClientWorkREPL(client);
-                    await DoClientWorkSimple(client, count: 20, helloId: 0);
+                    // await DoClientWorkSimple(client, count: 20, helloId: 0);
+                    await DoTaskTest(client);
                     // await Task.Delay(5000);
                     await Task.WhenAll(subscriptionHandle.Select(h => h.UnsubscribeAsync()));
                     await client.Close();
@@ -179,7 +180,7 @@ namespace MyClient
                     await friend.SayHello("bye!");
                     break;
                 }
-
+                RequestContext.Set("TraceId", 384);
                 var caculator = client.GetGrain<ICaculator>(Guid.Empty);
                 var immutable = new ImmutableType(10);
                 var x = await caculator.GetImmutable(immutable);
@@ -197,6 +198,7 @@ namespace MyClient
             int times = 0;
             while (count == -1 | (++times) < count)
             {
+                RequestContext.Set("TraceId", 384);
                 var friend = helloId == -1 ? client.GetGrain<IHello>(random.Next(100)) : client.GetGrain<IHello>(random.Next(helloId));
                 var caculator = client.GetGrain<ICaculator>(Guid.Empty);
                 var num = await caculator.Add(random.Next(10000), random.Next(10000));
@@ -206,6 +208,11 @@ namespace MyClient
             }
         }
 
+        static async Task DoTaskTest(IClusterClient client)
+        {
+            var taskgraion = client.GetGrain<ITaskGrain>(0);
+            await taskgraion.MyGrainMethod();
+        }
         private static async Task InitAsync()
         {
             TypeDescriptor.AddAttributes(typeof(IPEndPoint), new TypeConverterAttribute(typeof(IdEndPointConverter)));

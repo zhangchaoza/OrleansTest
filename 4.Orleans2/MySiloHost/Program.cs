@@ -122,6 +122,8 @@ namespace MySiloHost
                     .SetMinimumLevel(LogLevel.Debug)
                     .AddConsole());
 
+            
+
             var host = builder.Build();
             await host.StartAsync();
             return host;

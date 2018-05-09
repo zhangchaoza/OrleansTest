@@ -57,6 +57,7 @@ namespace GrainImplement
 
         async Task<string> IHello.SayHello(string greeting)
         {
+            logger.LogInformation("request {0}",RequestContext.Get("TraceId"));
             logger.LogInformation($"+++SayHello message received: greeting = '{greeting}',last message is '{State.LastMessage}'");
             var feedback = $"You said: '{greeting}', I say: {State.LastMessage}!";
             State.LastMessage = greeting;

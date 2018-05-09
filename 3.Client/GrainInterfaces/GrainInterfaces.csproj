@@ -119,6 +119,8 @@
   <ItemGroup>
     <Compile Include="IChat.cs" />
     <Compile Include="IHello.cs" />
+    <Compile Include="ITaskGrain2.cs" />
+    <Compile Include="ITaskGrain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
