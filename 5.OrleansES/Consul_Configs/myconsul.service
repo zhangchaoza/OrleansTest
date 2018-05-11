@@ -1,0 +1,9 @@
+[Unit]
+Description=Consul启动脚本
+
+[Service]
+ExecStart=/usr/local/bin/run_consul.sh
+
+[Install]
+WantedBy=multi-user.target
+Alias=myconsul.service
