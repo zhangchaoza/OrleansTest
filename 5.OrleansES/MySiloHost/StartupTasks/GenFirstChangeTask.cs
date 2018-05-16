@@ -19,32 +19,44 @@ namespace MySiloHost.StartupTasks
 
         public async Task Execute(CancellationToken cancellationToken)
         {
-            var logEventGrain = grainFactory.GetGrain<ILogStorageBasedEventGrain>(0);
-            // await logEventGrain.Update(null);
-            await logEventGrain.Update(new Change
-            {
-                Name = "GenFirstChangeTask",
-                Value = -1,
-                When = DateTimeOffset.UtcNow
-            });
+            // var logEventGrain = grainFactory.GetGrain<ILogStorageBasedEventGrain>(0);
+            // // await logEventGrain.Update(null);
+            // await logEventGrain.Update(new Change
+            // {
+            //     Name = "GenFirstChangeTask",
+            //     Value = -1,
+            //     When = DateTimeOffset.UtcNow
+            // });
 
-            var stateEventGrain = grainFactory.GetGrain<IStateStorageBasedEventGrain>(0);
-            // await stateEventGrain.Update(null);
-            await stateEventGrain.Update(new Change
-            {
-                Name = "GenFirstChangeTask",
-                Value = -1,
-                When = DateTimeOffset.UtcNow
-            });
+            // var stateEventGrain = grainFactory.GetGrain<IStateStorageBasedEventGrain>(0);
+            // // await stateEventGrain.Update(null);
+            // await stateEventGrain.Update(new Change
+            // {
+            //     Name = "GenFirstChangeTask",
+            //     Value = -1,
+            //     When = DateTimeOffset.UtcNow
+            // });
 
             var customEventGrain = grainFactory.GetGrain<ICustomStorageBasedEventGrain>(0);
-            // await stateEventGrain.Update(null);
-            await customEventGrain.Update(new Change
-            {
-                Name = "GenFirstChangeTask",
-                Value = -1,
-                When = DateTimeOffset.UtcNow
-            });
+            await customEventGrain.Update(null);
+            // await customEventGrain.Update(new Change
+            // {
+            //     Name = "GenFirstChangeTask",
+            //     Value = -1,
+            //     When = DateTimeOffset.UtcNow
+            // });
+            // await customEventGrain.Update(new Change
+            // {
+            //     Name = "GenFirstChangeTask",
+            //     Value = 1,
+            //     When = DateTimeOffset.UtcNow
+            // });
+            // await customEventGrain.Update(new Change
+            // {
+            //     Name = "GenFirstChangeTask",
+            //     Value = 2,
+            //     When = DateTimeOffset.UtcNow
+            // });
         }
     }
 }

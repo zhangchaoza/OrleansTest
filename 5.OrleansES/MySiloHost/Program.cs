@@ -70,7 +70,7 @@ namespace MySiloHost
                 // })
                 .AddAdoNetGrainStorageAsDefault(op =>
                 {
-                    op.ConnectionString = "";
+                    op.ConnectionString = "Data Source=10.0.113.10;Initial Catalog=OrleansStore_ZC;Persist Security Info=True;User ID=sa;Password=admin@2023";
                     op.UseJsonFormat=true;
                 })
                 .UseLocalhostClustering()

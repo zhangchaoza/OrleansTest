@@ -11,6 +11,8 @@ namespace GrainImplement
     using System.Reflection;
     using Orleans.EventSourcing.CustomStorage;
     using System.Collections.Generic;
+    using EventTable;
+    using Newtonsoft.Json;
 
     [LogConsistencyProvider(ProviderName = "CustomStorage")]
     public class CustomStorageBasedEventGrain :
@@ -27,9 +29,9 @@ namespace GrainImplement
 
         protected string EventName => $"CustomStorageBasedEventGrain<{this.GetPrimaryKeyLong()}>";
 
-        public override Task OnActivateAsync()
+        public async override Task OnActivateAsync()
         {
-            return Task.CompletedTask;
+            await InitStorageInterface();
         }
 
         #region JournaledGrain
@@ -76,21 +78,24 @@ namespace GrainImplement
 
         #region ICustomStorageInterface
 
-        Task<KeyValuePair<int, EventState>> ICustomStorageInterface<EventState, Change>.ReadStateFromStorage()
+        private SimpleEventTable table;
+
+        async Task InitStorageInterface()
         {
-            EventState state = new EventState();
-            state.Apply(new Change
-            {
-                Name = "Fake",
-                Value = -2,
-                When = DateTimeOffset.UtcNow
-            });
-            return Task.FromResult(new KeyValuePair<int, EventState>(1, state));
+            table = new SimpleEventTable(logger);
+            await table.Connect();
+        }
+
+        async Task<KeyValuePair<int, EventState>> ICustomStorageInterface<EventState, Change>.ReadStateFromStorage()
+        {
+            var events = await table.ReadEventState<Change>(EventName);
+            EventState state = new EventState(events);
+            return new KeyValuePair<int, EventState>(state.Changes.Count, state);
         }
 
         Task<bool> ICustomStorageInterface<EventState, Change>.ApplyUpdatesToStorage(IReadOnlyList<Change> updates, int expectedversion)
         {
-            return Task.FromResult(true);
+            return table.UpdateEventState(EventName, expectedversion, updates);
         }
 
         #endregion
