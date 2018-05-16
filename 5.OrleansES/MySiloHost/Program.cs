@@ -71,7 +71,7 @@ namespace MySiloHost
                 .AddAdoNetGrainStorageAsDefault(op =>
                 {
                     op.ConnectionString = "Data Source=10.0.113.10;Initial Catalog=OrleansStore_ZC;Persist Security Info=True;User ID=sa;Password=admin@2023";
-                    op.UseJsonFormat=true;
+                    op.UseJsonFormat = true;
                 })
                 .UseLocalhostClustering()
                 .AddLogStorageBasedLogConsistencyProvider("LogStorage")
@@ -81,6 +81,7 @@ namespace MySiloHost
                 // .AddMemoryGrainStorageAsDefault()
                 .UseInMemoryReminderService()
                 .AddStartupTask<GenFirstChangeTask>()
+                .AddStartupTask<GetTopChangeTask>(40000)
                 .Configure<DashboardOptions>(hostConfig.GetSection("DashboardOptions"))
                 .Configure<SiloOptions>(opt => opt.SiloName = Dns.GetHostName())
                 .Configure<ClusterOptions>(hostConfig.GetSection("ClusterOptions"))
@@ -102,9 +103,10 @@ namespace MySiloHost
                     .AddFilter("Orleans.Runtime.Management", LogLevel.Error)
                     .AddFilter("Orleans.Runtime.SiloControl", LogLevel.Error)
                     .AddFilter("Runtime", LogLevel.Error)
-                    .AddFilter("GrainImplement.LogStorageBasedEventGrain",LogLevel.None)
-                    .AddFilter("GrainImplement.StateStorageBasedEventGrain",LogLevel.None)
-                    .AddFilter("GrainImplement.CustomStorageBasedEventGrain",LogLevel.Information)
+                    .AddFilter("GrainImplement.LogStorageBasedEventGrain", LogLevel.None)
+                    .AddFilter("GrainImplement.StateStorageBasedEventGrain", LogLevel.None)
+                    .AddFilter("GrainImplement.CustomStorageBasedEventGrain", LogLevel.Information)
+                    .AddFilter("MySiloHost.StartupTasks.GetTopChangeTask", LogLevel.Information)
                     .SetMinimumLevel(LogLevel.None)
                     .AddConsole());
 

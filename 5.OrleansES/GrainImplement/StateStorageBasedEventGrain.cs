@@ -9,6 +9,7 @@ namespace GrainImplement
     using Orleans.Runtime;
     using Orleans.EventSourcing;
     using System.Reflection;
+    using System.Linq;
 
     [LogConsistencyProvider(ProviderName = "StateStorage")]
     public class StateStorageBasedEventGrain : JournaledGrain<EventState, Change>, IStateStorageBasedEventGrain
@@ -51,19 +52,22 @@ namespace GrainImplement
 
         Task<Change> IEventGrain.GetTop()
         {
-            throw new NotImplementedException();
+            var result = State.Changes
+                .OrderByDescending(o => o.Value.When)
+                .Select(i => i.Value)
+                .FirstOrDefault();
+            return Task.FromResult(result);
         }
 
-        Task IEventGrain.Update(Change change)
+        async Task IEventGrain.Update(Change change)
         {
             if (null == change)
             {
-                return Task.CompletedTask;
+                return;
             }
             logger.LogInformation($"{EventName} update:{{0}},{{1}},{{2}}", change.Name, change.Value, change.When);
             RaiseEvent(change);
-            return Task.CompletedTask;
-            // await ConfirmEvents();
+            await ConfirmEvents();
         }
 
         #endregion
