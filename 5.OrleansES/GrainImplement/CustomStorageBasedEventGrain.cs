@@ -1,25 +1,24 @@
 namespace GrainImplement
 {
-    using System;
     using System.Threading.Tasks;
     using GrainInterfaces;
     using Microsoft.Extensions.Logging;
     using Orleans;
     using Orleans.Providers;
-    using Orleans.Runtime;
     using Orleans.EventSourcing;
     using System.Reflection;
     using Orleans.EventSourcing.CustomStorage;
     using System.Collections.Generic;
-    using EventTable;
-    using Newtonsoft.Json;
-    using System.Linq;
+    using EventSourcing;
+    using EventSourcing.EventStates;
+    using EventSourcing.EventStorages.Redis;
+    using GrainImplement.EventStates;
 
     [LogConsistencyProvider(ProviderName = "CustomStorage")]
     public class CustomStorageBasedEventGrain :
-        JournaledGrain<EventState, Change>,
+        JournaledGrain<ChangeEventState, Change>,
         ICustomStorageBasedEventGrain,
-        ICustomStorageInterface<EventState, Change>
+        ICustomStorageInterface<ChangeEventState, Change>
     {
         private readonly ILogger logger;
 
@@ -39,18 +38,18 @@ namespace GrainImplement
 
         protected override void OnTentativeStateChanged()
         {
-            logger.LogInformation($"{EventName}_{MethodBase.GetCurrentMethod().Name} 版本: {Version}");
+            // logger.LogInformation($"{EventName}_{MethodBase.GetCurrentMethod().Name} 版本: {Version}");
         }
 
         protected override void OnStateChanged()
         {
-            logger.LogInformation($"{EventName}_{MethodBase.GetCurrentMethod().Name} 版本: {Version}");
+            // logger.LogInformation($"{EventName}_{MethodBase.GetCurrentMethod().Name} 版本: {Version}");
         }
 
-        protected override void TransitionState(EventState state, Change delta)
+        protected override void TransitionState(ChangeEventState state, Change change)
         {
             logger.LogInformation($"{EventName}_{MethodBase.GetCurrentMethod().Name} 版本: {Version}");
-            state.Apply(delta);
+            state.Apply(change);
         }
 
         #endregion
@@ -59,11 +58,12 @@ namespace GrainImplement
 
         Task<Change> IEventGrain.GetTop()
         {
-            var result = State.Changes
-                .OrderByDescending(o => o.Value.When)
-                .Select(i => i.Value)
-                .FirstOrDefault();
-            return Task.FromResult(result);
+            return State.GetNewestEvent(Version);
+        }
+
+        Task<IReadOnlyList<Change>> IEventGrain.GetAllEvents()
+        {
+            return State.GetAllEvents();
         }
 
         async Task IEventGrain.Update(Change change)
@@ -73,33 +73,38 @@ namespace GrainImplement
                 return;
             }
             logger.LogInformation($"{EventName} update:{{0}},{{1}},{{2}}", change.Name, change.Value, change.When);
-            RaiseEvent(change);
-            await ConfirmEvents();
+            await RaiseConditionalEvent(change);
+            // RaiseEvent(change);
+            // await ConfirmEvents();
         }
 
+        Task<double> IEventGrain.GetCurrentValue()
+        {
+            return Task.FromResult(State.GetCurrent());
+        }
 
         #endregion
 
         #region ICustomStorageInterface
 
-        private SimpleEventTable table;
+        private IEventTable table;
 
-        async Task InitStorageInterface()
+        Task InitStorageInterface()
         {
-            table = new SimpleEventTable(logger);
-            await table.Connect();
+            table = new RedisEventTable(logger);
+            State.Init(EventName, table);
+            return Task.CompletedTask;
         }
 
-        async Task<KeyValuePair<int, EventState>> ICustomStorageInterface<EventState, Change>.ReadStateFromStorage()
+        async Task<KeyValuePair<int, ChangeEventState>> ICustomStorageInterface<ChangeEventState, Change>.ReadStateFromStorage()
         {
-            var events = await table.ReadEventState<Change>(EventName);
-            EventState state = new EventState(events);
-            return new KeyValuePair<int, EventState>(state.Changes.Count, state);
+            var version = await State.PlayAllEvents();
+            return new KeyValuePair<int, ChangeEventState>(version, State);
         }
 
-        Task<bool> ICustomStorageInterface<EventState, Change>.ApplyUpdatesToStorage(IReadOnlyList<Change> updates, int expectedversion)
+        Task<bool> ICustomStorageInterface<ChangeEventState, Change>.ApplyUpdatesToStorage(IReadOnlyList<Change> updates, int expectedversion)
         {
-            return table.UpdateEventState(EventName, expectedversion, updates);
+            return table.UpdateEvents(EventName, expectedversion + 1, updates);
         }
 
         #endregion

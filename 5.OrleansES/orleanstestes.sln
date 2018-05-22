@@ -18,7 +18,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{D33BCB93-90BC-4AF8-B351-60727934F161}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventTable", "EventTable\EventTable.csproj", "{A12205C4-E3A4-44AF-8057-200889E82FFD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventSourcing", "EventSourcing\EventSourcing.csproj", "{A12205C4-E3A4-44AF-8057-200889E82FFD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -92,16 +92,16 @@ Global
 		{D33BCB93-90BC-4AF8-B351-60727934F161}.Release|x86.Build.0 = Release|Any CPU
 		{A12205C4-E3A4-44AF-8057-200889E82FFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A12205C4-E3A4-44AF-8057-200889E82FFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A12205C4-E3A4-44AF-8057-200889E82FFD}.Debug|x64.ActiveCfg = Debug|x64
-		{A12205C4-E3A4-44AF-8057-200889E82FFD}.Debug|x64.Build.0 = Debug|x64
-		{A12205C4-E3A4-44AF-8057-200889E82FFD}.Debug|x86.ActiveCfg = Debug|x86
-		{A12205C4-E3A4-44AF-8057-200889E82FFD}.Debug|x86.Build.0 = Debug|x86
+		{A12205C4-E3A4-44AF-8057-200889E82FFD}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A12205C4-E3A4-44AF-8057-200889E82FFD}.Debug|x64.Build.0 = Debug|Any CPU
+		{A12205C4-E3A4-44AF-8057-200889E82FFD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A12205C4-E3A4-44AF-8057-200889E82FFD}.Debug|x86.Build.0 = Debug|Any CPU
 		{A12205C4-E3A4-44AF-8057-200889E82FFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A12205C4-E3A4-44AF-8057-200889E82FFD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A12205C4-E3A4-44AF-8057-200889E82FFD}.Release|x64.ActiveCfg = Release|x64
-		{A12205C4-E3A4-44AF-8057-200889E82FFD}.Release|x64.Build.0 = Release|x64
-		{A12205C4-E3A4-44AF-8057-200889E82FFD}.Release|x86.ActiveCfg = Release|x86
-		{A12205C4-E3A4-44AF-8057-200889E82FFD}.Release|x86.Build.0 = Release|x86
+		{A12205C4-E3A4-44AF-8057-200889E82FFD}.Release|x64.ActiveCfg = Release|Any CPU
+		{A12205C4-E3A4-44AF-8057-200889E82FFD}.Release|x64.Build.0 = Release|Any CPU
+		{A12205C4-E3A4-44AF-8057-200889E82FFD}.Release|x86.ActiveCfg = Release|Any CPU
+		{A12205C4-E3A4-44AF-8057-200889E82FFD}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

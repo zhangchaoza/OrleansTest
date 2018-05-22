@@ -1,19 +1,20 @@
 namespace GrainImplement
 {
-    using System;
     using System.Threading.Tasks;
     using GrainInterfaces;
     using Microsoft.Extensions.Logging;
     using Orleans;
     using Orleans.Providers;
-    using Orleans.Runtime;
     using Orleans.EventSourcing;
     using System.Reflection;
     using System.Linq;
+    using System.Collections.Generic;
+    using EventSourcing.EventStates;
+    using GrainImplement.EventStates;
 
-    // [StorageProvider(ProviderName = "Default")]
+    [StorageProvider(ProviderName = "Default")]
     [LogConsistencyProvider(ProviderName = "LogStorage")]
-    public class LogStorageBasedEventGrain : JournaledGrain<EventState, Change>, ILogStorageBasedEventGrain
+    public class LogStorageBasedEventGrain : JournaledGrain<SimpleChangeEventState, Change>, ILogStorageBasedEventGrain
     {
         private readonly ILogger logger;
 
@@ -34,15 +35,15 @@ namespace GrainImplement
 
         protected override void OnTentativeStateChanged()
         {
-            logger.LogInformation($"{EventName}_{MethodBase.GetCurrentMethod().Name} 版本: {Version}");
+            // logger.LogInformation($"{EventName}_{MethodBase.GetCurrentMethod().Name} 版本: {Version}");
         }
 
         protected override void OnStateChanged()
         {
-            logger.LogInformation($"{EventName}_{MethodBase.GetCurrentMethod().Name} 版本: {Version}");
+            // logger.LogInformation($"{EventName}_{MethodBase.GetCurrentMethod().Name} 版本: {Version}");
         }
 
-        protected override void TransitionState(EventState state, Change delta)
+        protected override void TransitionState(SimpleChangeEventState state, Change delta)
         {
             logger.LogInformation($"{EventName}_{MethodBase.GetCurrentMethod().Name} 版本: {Version}");
             state.Apply(delta);
@@ -54,11 +55,14 @@ namespace GrainImplement
 
         Task<Change> IEventGrain.GetTop()
         {
-            var result = State.Changes
-                .OrderByDescending(o => o.Value.When)
-                .Select(i => i.Value)
-                .FirstOrDefault();
-            return Task.FromResult(result);
+            var newestEvent = State.GetNewestEvent();
+            return Task.FromResult(newestEvent);
+        }
+
+        async Task<IReadOnlyList<Change>> IEventGrain.GetAllEvents()
+        {
+            var allEvents = await RetrieveConfirmedEvents(0, Version);
+            return allEvents;
         }
 
         async Task IEventGrain.Update(Change change)
@@ -72,6 +76,12 @@ namespace GrainImplement
             await ConfirmEvents();
         }
 
+        Task<double> IEventGrain.GetCurrentValue()
+        {
+            return Task.FromResult(State.GetCurrent());
+        }
+
         #endregion
+
     }
 }

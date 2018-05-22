@@ -80,8 +80,10 @@ namespace MySiloHost
                 // .AddMemoryGrainStorage("DevStore")
                 // .AddMemoryGrainStorageAsDefault()
                 .UseInMemoryReminderService()
-                .AddStartupTask<GenFirstChangeTask>()
-                .AddStartupTask<GetTopChangeTask>(40000)
+                .AddStartupTask<GenChangeTask>(20000)
+                .AddStartupTask<GetTopChangeTask>(30000)
+                .AddStartupTask<GetAllChangeTask>(40000)
+                .AddStartupTask<GetCurrentTask>(50000)
                 .Configure<DashboardOptions>(hostConfig.GetSection("DashboardOptions"))
                 .Configure<SiloOptions>(opt => opt.SiloName = Dns.GetHostName())
                 .Configure<ClusterOptions>(hostConfig.GetSection("ClusterOptions"))
@@ -106,7 +108,7 @@ namespace MySiloHost
                     .AddFilter("GrainImplement.LogStorageBasedEventGrain", LogLevel.None)
                     .AddFilter("GrainImplement.StateStorageBasedEventGrain", LogLevel.None)
                     .AddFilter("GrainImplement.CustomStorageBasedEventGrain", LogLevel.Information)
-                    .AddFilter("MySiloHost.StartupTasks.GetTopChangeTask", LogLevel.Information)
+                    .AddFilter("MySiloHost.StartupTasks", LogLevel.Information)
                     .SetMinimumLevel(LogLevel.None)
                     .AddConsole());
 

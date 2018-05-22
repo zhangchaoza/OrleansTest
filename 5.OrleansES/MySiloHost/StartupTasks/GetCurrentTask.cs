@@ -8,12 +8,12 @@ namespace MySiloHost.StartupTasks
     using Orleans;
     using Orleans.Runtime;
 
-    public class GetTopChangeTask : IStartupTask
+    public class GetCurrentTask : IStartupTask
     {
         private readonly IGrainFactory grainFactory;
         private readonly ILogger logger;
 
-        public GetTopChangeTask(IGrainFactory grainFactory, ILogger<GetTopChangeTask> logger)
+        public GetCurrentTask(IGrainFactory grainFactory, ILogger<GetCurrentTask> logger)
         {
             this.grainFactory = grainFactory;
             this.logger = logger;
@@ -25,34 +25,29 @@ namespace MySiloHost.StartupTasks
 #if LOG_BASED
 
             var logEventGrain = grainFactory.GetGrain<ILogStorageBasedEventGrain>(0);
-            DisplayTop(nameof(logEventGrain), await logEventGrain.GetTop());
+            DisplayCurrent(nameof(logEventGrain), await logEventGrain.GetCurrentValue());
 
 #endif
 
 #if STATE_BASED
 
             var stateEventGrain = grainFactory.GetGrain<IStateStorageBasedEventGrain>(0);
-            DisplayTop(nameof(stateEventGrain), await stateEventGrain.GetTop());
+            DisplayCurrent(nameof(stateEventGrain), await stateEventGrain.GetCurrentValue());
+
 #endif
 
 #if CUSTOM_BASED
 
             var customEventGrain = grainFactory.GetGrain<ICustomStorageBasedEventGrain>(0);
-            DisplayTop(nameof(customEventGrain), await customEventGrain.GetTop());
+            DisplayCurrent(nameof(customEventGrain), await customEventGrain.GetCurrentValue());
+
 #endif
 
         }
 
-        private void DisplayTop(string name, Change top)
+        private void DisplayCurrent(string name, double top)
         {
-            if (null == top)
-            {
-                logger.LogInformation("{0}没有更新", name);
-            }
-            else
-            {
-                logger.LogInformation("{0}最新事件：{1},{2},{3}", name, top.Name, top.Value, top.When);
-            }
+            logger.LogInformation("{0}当前值：{1}", name, top);
         }
     }
 }

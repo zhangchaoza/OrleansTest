@@ -11,24 +11,24 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GrainInterfaces\GrainInterfaces.csproj"/>
-    <ProjectReference Include="..\GrainImplement\GrainImplement.csproj"/>
-    <ProjectReference Include="..\Common\Common.csproj"/>
+    <ProjectReference Include="..\GrainInterfaces\GrainInterfaces.csproj" />
+    <ProjectReference Include="..\GrainImplement\GrainImplement.csproj" />
+    <ProjectReference Include="..\Common\Common.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="2.0.0"/>
-    <PackageReference Include="Microsoft.Extensions.Configuration.Xml" Version="2.0.0"/>
-    <PackageReference Include="Microsoft.Extensions.Configuration.Ini" Version="2.0.0"/>
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.0.0"/>
-    <PackageReference Include="Microsoft.Orleans.OrleansProviders" Version="2.0.0"/>
-    <PackageReference Include="Microsoft.Orleans.Server" Version="2.0.0"/>
-    <PackageReference Include="Microsoft.Orleans.OrleansRuntime" Version="2.0.0"/>
-    <PackageReference Include="Microsoft.Orleans.OrleansCodeGenerator" Version="2.0.0"/>
-    <PackageReference Include="Microsoft.Orleans.OrleansCodeGenerator.Build" Version="2.0.0"/>
-    <PackageReference Include="OrleansDashboard" Version="2.0.0"/>
-    <PackageReference Include="Microsoft.Orleans.OrleansConsulUtils" Version="2.0.0"/>
-    <PackageReference Include="Microsoft.Orleans.Persistence.AdoNet" Version="2.0.0"/>
-    <PackageReference Include="System.Data.SqlClient" Version="4.4.3"/>
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Xml" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Ini" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Orleans.OrleansProviders" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Orleans.Server" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Orleans.OrleansRuntime" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Orleans.OrleansCodeGenerator" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Orleans.OrleansCodeGenerator.Build" Version="2.0.0" />
+    <PackageReference Include="OrleansDashboard" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Orleans.OrleansConsulUtils" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Orleans.Persistence.AdoNet" Version="2.0.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.4.3" />
   </ItemGroup>
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -36,6 +36,10 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <LangVersion>latest</LangVersion>
+    <DefineConstants>TRACE;DEBUG;NETCOREAPP2_0;LOG_BASED;STATE_BASED;CUSTOM_BASED</DefineConstants>
+    <!-- <DefineConstants>TRACE;DEBUG;NETCOREAPP2_0;LOG_BASED</DefineConstants> -->
+    <!-- <DefineConstants>TRACE;DEBUG;NETCOREAPP2_0;STATE_BASED</DefineConstants> -->
+    <!-- <DefineConstants>TRACE;DEBUG;NETCOREAPP2_0;CUSTOM_BASED</DefineConstants> -->
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <LangVersion>latest</LangVersion>

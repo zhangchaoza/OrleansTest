@@ -4,19 +4,17 @@ namespace MySiloHost.StartupTasks
     using System.Threading;
     using System.Threading.Tasks;
     using GrainInterfaces;
-    using Microsoft.Extensions.Logging;
     using Orleans;
     using Orleans.Runtime;
 
-    public class GetTopChangeTask : IStartupTask
+    public class GenChangeTask : IStartupTask
     {
-        private readonly IGrainFactory grainFactory;
-        private readonly ILogger logger;
 
-        public GetTopChangeTask(IGrainFactory grainFactory, ILogger<GetTopChangeTask> logger)
+        private readonly IGrainFactory grainFactory;
+
+        public GenChangeTask(IGrainFactory grainFactory)
         {
             this.grainFactory = grainFactory;
-            this.logger = logger;
         }
 
         public async Task Execute(CancellationToken cancellationToken)
@@ -25,33 +23,39 @@ namespace MySiloHost.StartupTasks
 #if LOG_BASED
 
             var logEventGrain = grainFactory.GetGrain<ILogStorageBasedEventGrain>(0);
-            DisplayTop(nameof(logEventGrain), await logEventGrain.GetTop());
+            // await logEventGrain.Update(null);
+           await GenChange( logEventGrain, 10);
 
 #endif
 
 #if STATE_BASED
 
             var stateEventGrain = grainFactory.GetGrain<IStateStorageBasedEventGrain>(0);
-            DisplayTop(nameof(stateEventGrain), await stateEventGrain.GetTop());
+            //await stateEventGrain.Update(null);
+            await GenChange( stateEventGrain, 10);
+
 #endif
 
 #if CUSTOM_BASED
 
             var customEventGrain = grainFactory.GetGrain<ICustomStorageBasedEventGrain>(0);
-            DisplayTop(nameof(customEventGrain), await customEventGrain.GetTop());
+            //await customEventGrain.Update(null);
+            await GenChange(customEventGrain, 13);
+
 #endif
 
         }
 
-        private void DisplayTop(string name, Change top)
+        private async Task GenChange(IEventGrain eventGrain, int count)
         {
-            if (null == top)
+            for (int i = 0; i < count; i++)
             {
-                logger.LogInformation("{0}没有更新", name);
-            }
-            else
-            {
-                logger.LogInformation("{0}最新事件：{1},{2},{3}", name, top.Name, top.Value, top.When);
+                await eventGrain.Update(new Change
+                {
+                    Name = "GenChangeTask",
+                    Value = i,
+                    When = DateTimeOffset.UtcNow
+                });
             }
         }
     }

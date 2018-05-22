@@ -1,4 +1,4 @@
-namespace EventTable
+namespace EventSourcing.EventStorages.Redis
 {
     using System;
     using StackExchange.Redis;

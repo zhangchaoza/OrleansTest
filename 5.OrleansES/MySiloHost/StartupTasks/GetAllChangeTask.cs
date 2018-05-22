@@ -1,6 +1,7 @@
 namespace MySiloHost.StartupTasks
 {
     using System;
+    using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
     using GrainInterfaces;
@@ -8,12 +9,12 @@ namespace MySiloHost.StartupTasks
     using Orleans;
     using Orleans.Runtime;
 
-    public class GetTopChangeTask : IStartupTask
+    public class GetAllChangeTask : IStartupTask
     {
         private readonly IGrainFactory grainFactory;
         private readonly ILogger logger;
 
-        public GetTopChangeTask(IGrainFactory grainFactory, ILogger<GetTopChangeTask> logger)
+        public GetAllChangeTask(IGrainFactory grainFactory, ILogger<GetAllChangeTask> logger)
         {
             this.grainFactory = grainFactory;
             this.logger = logger;
@@ -25,33 +26,38 @@ namespace MySiloHost.StartupTasks
 #if LOG_BASED
 
             var logEventGrain = grainFactory.GetGrain<ILogStorageBasedEventGrain>(0);
-            DisplayTop(nameof(logEventGrain), await logEventGrain.GetTop());
+            DisplayAll(nameof(logEventGrain), await logEventGrain.GetAllEvents());
 
 #endif
 
 #if STATE_BASED
 
             var stateEventGrain = grainFactory.GetGrain<IStateStorageBasedEventGrain>(0);
-            DisplayTop(nameof(stateEventGrain), await stateEventGrain.GetTop());
+            DisplayAll(nameof(stateEventGrain), await stateEventGrain.GetAllEvents());
+
 #endif
 
 #if CUSTOM_BASED
 
             var customEventGrain = grainFactory.GetGrain<ICustomStorageBasedEventGrain>(0);
-            DisplayTop(nameof(customEventGrain), await customEventGrain.GetTop());
+            DisplayAll(nameof(customEventGrain), await customEventGrain.GetAllEvents());
+
 #endif
 
         }
 
-        private void DisplayTop(string name, Change top)
+        private void DisplayAll(string name, IReadOnlyList<Change> allEvents)
         {
-            if (null == top)
+            if (null == allEvents || allEvents.Count == 0)
             {
                 logger.LogInformation("{0}没有更新", name);
             }
             else
             {
-                logger.LogInformation("{0}最新事件：{1},{2},{3}", name, top.Name, top.Value, top.When);
+                foreach (var e in allEvents)
+                {
+                    logger.LogInformation("{0}历史更新事件：{1},{2},{3}", name, e.Name, e.Value, e.When);
+                }
             }
         }
     }
