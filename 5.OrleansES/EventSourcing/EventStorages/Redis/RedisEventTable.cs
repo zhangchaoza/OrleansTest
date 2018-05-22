@@ -8,6 +8,7 @@ namespace EventSourcing.EventStorages.Redis
     using System.Linq;
     using Newtonsoft.Json;
     using Microsoft.Extensions.Logging;
+    using EventSourcing.EventStates;
 
     public class RedisEventTable : IEventTable
     {
@@ -22,42 +23,83 @@ namespace EventSourcing.EventStorages.Redis
 
         public async Task<IEnumerable<T>> ReadAllEvents<T>(string eventName)
         {
-            var events = await db.HashGetAllAsync(PrepareRedisKey(eventName));
-            return events.Select(he => JsonConvert.DeserializeObject<T>((string)he.Value ?? ""));
-        }
-
-        public async Task<bool> UpdateEvents<T>(string eventName, int expectedversion, IEnumerable<T> updates)
-        {
-            var events = updates
-                .Select((e, i) => new HashEntry(PrepareHashFieldKey(expectedversion + i), JsonConvert.SerializeObject(e)))
-                .ToArray();
-            try
-            {
-                await db.HashSetAsync(PrepareRedisKey(eventName), events);
-                return true;
-            }
-            catch (System.Exception ex)
-            {
-                logger.LogError(ex, "写入时间失败");
-                return false;
-            }
+            var events = await db.SortedSetRangeByRankAsync(PrepareNotSavedSnapshotEventsRedisKey(eventName), 0, -1);
+            return events.Select(he => JsonConvert.DeserializeObject<T>((string)he ?? ""));
         }
 
         public async Task<T> ReadNewestEvent<T>(string eventName, int version)
         {
-            string eventJson = await db.HashGetAsync(PrepareRedisKey(eventName), PrepareHashFieldKey(version));
-            return JsonConvert.DeserializeObject<T>(eventJson ?? "");
+            return (await db.SortedSetRangeByRankAsync(PrepareNotSavedSnapshotEventsRedisKey(eventName), 0, 1, Order.Descending))
+                .Select(he => JsonConvert.DeserializeObject<T>((string)he ?? ""))
+                .FirstOrDefault();
+        }
+        
+        public async Task<bool> ApplyNotSavedSnapshotEvents<T>(string eventName, int expectedversion, IEnumerable<T> updates)
+        {
+            var events = updates
+                .Select((e, i) => db.SortedSetAddAsync(PrepareNotSavedSnapshotEventsRedisKey(eventName), JsonConvert.SerializeObject(e), expectedversion + i));
+            try
+            {
+                var res = await Task.WhenAll(events);
+                return res.Count(i => !i) == 0;
+            }
+            catch (System.Exception ex)
+            {
+                logger.LogError(ex, "写入事件失败");
+                return false;
+            }
         }
 
-        private RedisKey PrepareRedisKey(string eventName)
+
+        public async Task<IEnumerable<SimpleSnapshot<TValue>>> ReadAllSnapshots<TValue>(string eventName)
         {
-            return $"event_{eventName}";
+            var events = await db.SortedSetRangeByRankAsync(PrepareSnapshotsRedisKey(eventName), 0, -1);
+            return events.Select(he => JsonConvert.DeserializeObject<SimpleSnapshot<TValue>>((string)he ?? ""));
         }
 
-        private RedisValue PrepareHashFieldKey(int key)
+        private RedisKey PrepareNotSavedSnapshotEventsRedisKey(string eventName)
         {
-            return key;
-            // return BitConverter.GetBytes(key);
+            return $"es_{eventName}_NotSavedSnapshotEvents";
+        }
+
+        private RedisKey PrepareSavedSnapshotEventsRedisKey(string eventName)
+        {
+            return $"es_{eventName}_SavedSnapshotEvents";
+        }
+
+        private RedisKey PrepareSnapshotsRedisKey(string eventName)
+        {
+            return $"es_{eventName}_Snapshots";
+        }
+
+        public Task<IEnumerable<T>> ReadNotSavedSnapshotEvents<T>(string eventName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> ClearNotSavedSnapshotEvents(string eventName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<T>> ReadSavedSnapshotEvents<T>(string eventName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> ApplySavedSnapshotEvents<T>(string eventName, int expectedversion, IEnumerable<T> updates)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<SimpleSnapshot<TValue>> ReadNewestSnapshot<TValue>(string eventName, int version)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> ApplySnapshot<T>(string eventName, int expectedversion, IEnumerable<T> updates)
+        {
+            throw new NotImplementedException();
         }
 
         // private int ReadHashFieldKey(RedisValue key)

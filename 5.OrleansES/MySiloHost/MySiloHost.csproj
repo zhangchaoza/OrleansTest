@@ -36,10 +36,10 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <LangVersion>latest</LangVersion>
-    <DefineConstants>TRACE;DEBUG;NETCOREAPP2_0;LOG_BASED;STATE_BASED;CUSTOM_BASED</DefineConstants>
+    <!-- <DefineConstants>TRACE;DEBUG;NETCOREAPP2_0;LOG_BASED;STATE_BASED;CUSTOM_BASED</DefineConstants> -->
     <!-- <DefineConstants>TRACE;DEBUG;NETCOREAPP2_0;LOG_BASED</DefineConstants> -->
     <!-- <DefineConstants>TRACE;DEBUG;NETCOREAPP2_0;STATE_BASED</DefineConstants> -->
-    <!-- <DefineConstants>TRACE;DEBUG;NETCOREAPP2_0;CUSTOM_BASED</DefineConstants> -->
+    <DefineConstants>TRACE;DEBUG;NETCOREAPP2_0;CUSTOM_BASED</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <LangVersion>latest</LangVersion>

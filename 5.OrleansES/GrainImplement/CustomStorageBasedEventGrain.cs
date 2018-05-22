@@ -104,7 +104,7 @@ namespace GrainImplement
 
         Task<bool> ICustomStorageInterface<ChangeEventState, Change>.ApplyUpdatesToStorage(IReadOnlyList<Change> updates, int expectedversion)
         {
-            return table.UpdateEvents(EventName, expectedversion + 1, updates);
+            return table.ApplyNotSavedSnapshotEvents(EventName, expectedversion + 1, updates);
         }
 
         #endregion
