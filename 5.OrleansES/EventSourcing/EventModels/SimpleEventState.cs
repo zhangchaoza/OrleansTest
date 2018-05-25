@@ -1,11 +1,16 @@
-namespace EventSourcing.EventStates
+namespace EventSourcing.EventModels
 {
     using System;
     using System.Collections.Generic;
     using EventSourcing.Abstractions;
     using System.Linq;
 
-    public class SimpleEventState<TEventBase> where TEventBase : IEventBase
+    /// <summary>
+    /// 用户logbased、statebased
+    /// </summary>
+    /// <typeparam name="TEventBase"></typeparam>
+    /// <typeparam name="TEventValue"></typeparam>
+    public abstract class SimpleEventState<TEventBase, TEventValue, TEventuallyValue> where TEventBase : IEvent<TEventValue>
     {
 
         private SortedDictionary<DateTimeOffset, TEventBase> events;
@@ -30,11 +35,14 @@ namespace EventSourcing.EventStates
             events.Add(delta.When, delta);
         }
 
-        public double GetCurrent()
+        public TEventuallyValue GetCurrent()
         {
-            return events
-                 .OrderBy(o => o.Key)
-                 .Sum(i => i.Value.Value);
+            TEventuallyValue value = default(TEventuallyValue);
+            foreach (var item in events.OrderBy(o => o.Key))
+            {
+                value = ValueOpertion(value, item.Value.Value);
+            }
+            return value;
         }
 
         public TEventBase GetNewestEvent()
@@ -44,5 +52,7 @@ namespace EventSourcing.EventStates
                 .Select(i => i.Value)
                 .FirstOrDefault();
         }
+
+        protected abstract TEventuallyValue ValueOpertion(TEventuallyValue value1, TEventValue value2);
     }
 }

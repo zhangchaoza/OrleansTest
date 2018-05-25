@@ -2,10 +2,10 @@ namespace EventSourcing.Abstractions
 {
     using System;
 
-    public interface IEventBase
+    public interface ISnopshot<TEventuallyValue>
     {
         DateTimeOffset When { get; }
-        double Value { get; }
 
+        TEventuallyValue Value { get; }
     }
 }

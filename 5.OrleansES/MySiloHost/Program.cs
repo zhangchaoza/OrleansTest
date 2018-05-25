@@ -80,7 +80,7 @@ namespace MySiloHost
                 // .AddMemoryGrainStorage("DevStore")
                 // .AddMemoryGrainStorageAsDefault()
                 .UseInMemoryReminderService()
-                .AddStartupTask<GenChangeTask>(20000)
+                // .AddStartupTask<GenChangeTask>(20000)
                 .AddStartupTask<GetTopChangeTask>(30000)
                 .AddStartupTask<GetAllChangeTask>(40000)
                 .AddStartupTask<GetCurrentTask>(50000)

@@ -4,7 +4,7 @@
     using EventSourcing.Abstractions;
 
     [Serializable]
-    public class Change : IEventBase
+    public class Change : IEvent<double>
     {
         public string Name { get; set; }
         public double Value { get; set; }

@@ -11,7 +11,7 @@ namespace GrainImplement
     using System.Reflection;
     using System.Linq;
     using System.Collections.Generic;
-    using EventSourcing.EventStates;
+    using EventSourcing.EventModels;
     using GrainImplement.EventStates;
 
     [LogConsistencyProvider(ProviderName = "StateStorage")]

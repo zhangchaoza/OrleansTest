@@ -10,7 +10,7 @@ namespace GrainImplement
     using Orleans.EventSourcing.CustomStorage;
     using System.Collections.Generic;
     using EventSourcing;
-    using EventSourcing.EventStates;
+    using EventSourcing.EventModels;
     using EventSourcing.EventStorages.Redis;
     using GrainImplement.EventStates;
 
@@ -49,7 +49,7 @@ namespace GrainImplement
         protected override void TransitionState(ChangeEventState state, Change change)
         {
             logger.LogInformation($"{EventName}_{MethodBase.GetCurrentMethod().Name} 版本: {Version}");
-            state.Apply(change);
+            state.Apply(change, Version);
         }
 
         #endregion
@@ -58,7 +58,7 @@ namespace GrainImplement
 
         Task<Change> IEventGrain.GetTop()
         {
-            return State.GetNewestEvent(Version);
+            return State.GetNewestEvent();
         }
 
         Task<IReadOnlyList<Change>> IEventGrain.GetAllEvents()
@@ -98,7 +98,7 @@ namespace GrainImplement
 
         async Task<KeyValuePair<int, ChangeEventState>> ICustomStorageInterface<ChangeEventState, Change>.ReadStateFromStorage()
         {
-            var version = await State.PlayAllEvents();
+            var version = await State.ReadFromStorage();
             return new KeyValuePair<int, ChangeEventState>(version, State);
         }
 
