@@ -1,31 +1,25 @@
-﻿using Orleans.Runtime.Configuration;
-using System;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
+﻿using Common;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using MySiloHost.StartupTasks;
 using Orleans;
-using Orleans.Hosting;
-using Orleans.Runtime.Configuration;
-using GrainImplement;
-using Orleans.ApplicationParts;
 using Orleans.Configuration;
+using Orleans.Hosting;
+using OrleansDashboard;
+using System;
+using System.ComponentModel;
 using System.IO;
 using System.Net;
-using Microsoft.Extensions.DependencyInjection;
-using System.Linq;
-using System.Collections.Generic;
-using System.ComponentModel;
-using Common;
-using OrleansDashboard;
-using MySiloHost.StartupTasks;
+using System.Threading.Tasks;
 
 namespace MySiloHost
 {
-    class Program
+    internal class Program
     {
-        static int Main(string[] args) => RunAsync().Result;
+        private static int Main(string[] args) => RunAsync().Result;
 
-        static async Task<int> RunAsync()
+        private static async Task<int> RunAsync()
         {
             await InitAsync();
 
@@ -64,7 +58,7 @@ namespace MySiloHost
                 .Build();
 
             var builder = new SiloHostBuilder()
-                .UseDashboard()
+                // .UseDashboard()
                 // .UseDashboard(options =>
                 // {
                 //     options.Username = "zack";
@@ -73,11 +67,11 @@ namespace MySiloHost
                 //     options.Port = 20020;
                 //     options.HostSelf = true;
                 // })
-                // .UseLocalhostClustering()
-                .UseConsulClustering(op =>
-                {
-                    op.Address = new Uri("http://127.0.0.1:8500");
-                })
+                .UseLocalhostClustering(siloPort: 111112, gatewayPort: 30000)
+                // .UseConsulClustering(op =>
+                // {
+                //     op.Address = new Uri("http://127.0.0.1:8500");
+                // })
                 .AddMemoryGrainStorage("DevStore")
                 //.AddMemoryGrainStorageAsDefault()
                 .UseInMemoryReminderService()
@@ -92,16 +86,16 @@ namespace MySiloHost
                 //     return null;
                 // }, streamConfigurator =>
                 // {
-
                 // })
                 .AddStartupTask<FirstStartupTask>()
                 .AddMemoryGrainStorage("PubSubStore")
-                .Configure<DashboardOptions>(hostConfig.GetSection("DashboardOptions"))
-                .Configure<SiloOptions>(opt => opt.SiloName = Dns.GetHostName())
-                .Configure<ClusterOptions>(hostConfig.GetSection("ClusterOptions"))
-                .Configure<EndpointOptions>(hostConfig.GetSection("EndpointOptions"))
-                .Configure<DevelopmentClusterMembershipOptions>(hostConfig.GetSection("DevelopmentClusterMembershipOptions"))
-                .Configure<ConsulClusteringSiloOptions>(hostConfig.GetSection("ConsulClusteringSiloOptions"))
+                // .Configure<DashboardOptions>(hostConfig.GetSection("DashboardOptions"))
+                .Configure<SiloOptions>(opt => opt.SiloName = Dns.GetHostName())// 配置silo属性
+                .Configure<ClusterOptions>(hostConfig.GetSection("ClusterOptions"))// 配置cluster属性
+                .Configure<EndpointOptions>(hostConfig.GetSection("EndpointOptions"))// 配置silo port、gateway
+                .Configure<DevelopmentClusterMembershipOptions>(hostConfig.GetSection("DevelopmentClusterMembershipOptions"))// 配置membership
+                .Configure<ConsulClusteringSiloOptions>(hostConfig.GetSection("ConsulClusteringSiloOptions")) // 配置consul
+
                 // .ConfigureServices((ctx, ss) =>
                 // {
                 //     ss.Configure<DevelopmentClusterMembershipOptions>(hostConfig.GetSection("DevelopmentClusterMembershipOptions"));
@@ -111,9 +105,9 @@ namespace MySiloHost
                     // .AddApplicationPart(typeof(HelloGrain).Assembly)
                     .AddFromApplicationBaseDirectory()
                     .WithCodeGeneration()
-                    // .AddFromApplicationBaseDirectory()
-                    //.WithReferences()
-                    )
+                                          // .AddFromApplicationBaseDirectory()
+                                          //.WithReferences()
+                                          )
                 .ConfigureLogging(logging => logging
                     .AddFilter("Orleans", LogLevel.Warning)
                     // .AddFilter("Orleans.Runtime.Management", LogLevel.Warning)
@@ -121,8 +115,6 @@ namespace MySiloHost
                     // .AddFilter("Runtime", LogLevel.Warning)
                     .SetMinimumLevel(LogLevel.Debug)
                     .AddConsole());
-
-            
 
             var host = builder.Build();
             await host.StartAsync();
@@ -135,6 +127,5 @@ namespace MySiloHost
             TypeDescriptor.AddAttributes(typeof(IPAddress), new TypeConverterAttribute(typeof(IPAddressConverter)));
             await Task.CompletedTask;
         }
-
     }
 }

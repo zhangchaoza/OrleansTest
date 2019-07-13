@@ -27,18 +27,22 @@ namespace GrainImplement
             timer = RegisterTimer(async s =>
             {
                 var guid = Guid.Empty;
-                var streamProvider = GetStreamProvider("SMSProvider");
-                var stream = streamProvider.GetStream<int>(guid, "RANDOMDATA");
                 var msg = random.Next();
                 try
                 {
+                    var streamProvider = GetStreamProvider("SMSProvider");
+                    var stream = streamProvider.GetStream<int>(guid, "RANDOMDATA");
                     await stream.OnNextAsync(msg/*, new SimpleStreamSequenceToken(msg)*/);
                 }
-                catch (System.Exception)
+                catch (System.Exception ex)
                 {
+                    Console.WriteLine($"SMSProvider-RANDOMDATA-SEND:{ex.Message}");
                     throw;
                 }
-                Console.WriteLine($"SMSProvider-RANDOMDATA-SEND:{msg}");
+                finally
+                {
+                    Console.WriteLine($"SMSProvider-RANDOMDATA-SEND:{msg}");
+                }
             }, null, TimeSpan.FromMilliseconds(1000), TimeSpan.FromMilliseconds(1000));
             return RegisterOrUpdateReminder("r1", TimeSpan.FromSeconds(10), TimeSpan.FromMinutes(1));
         }
@@ -57,7 +61,7 @@ namespace GrainImplement
 
         async Task<string> IHello.SayHello(string greeting)
         {
-            logger.LogInformation("request {0}",RequestContext.Get("TraceId"));
+            logger.LogInformation("request {0}", RequestContext.Get("TraceId"));
             logger.LogInformation($"+++SayHello message received: greeting = '{greeting}',last message is '{State.LastMessage}'");
             var feedback = $"You said: '{greeting}', I say: {State.LastMessage}!";
             State.LastMessage = greeting;

@@ -45,9 +45,9 @@ namespace MyClient
                 using (var client = await StartClientWithRetries())
                 {
                     subscriptionHandle = await SubscribeStream(client);
-                    // await DoClientWorkREPL(client);
+                    await DoClientWorkREPL(client);
                     // await DoClientWorkSimple(client, count: 20, helloId: 0);
-                    await DoTaskTest(client);
+                    // await DoTaskTest(client);
                     // await Task.Delay(5000);
                     await Task.WhenAll(subscriptionHandle.Select(h => h.UnsubscribeAsync()));
                     await client.Close();
@@ -91,21 +91,21 @@ namespace MyClient
                     // var c2 = (Uri)aaa.ConvertFrom("gwy.tcp://10.0.113.30:40000/0");
 
                     client = new ClientBuilder()
-                        // .UseLocalhostClustering(40000)
-                        // .UseStaticClustering()
-                        .UseConsulClustering(op =>
-                        {
-                            op.Address = new Uri("http://127.0.0.1:8500");
-                        })
+                        // .UseLocalhostClustering(gatewayPort: 30000)
+                        .UseStaticClustering()
+                        // .UseConsulClustering(op =>
+                        // {
+                        //     op.Address = new Uri("http://127.0.0.1:8500");
+                        // })
                         // .UseStaticClustering(options =>
                         // {
                         //    var biubhi=options.Gateways;
                         // })
                         .AddClusterConnectionLostHandler(OnLost)
                         .AddSimpleMessageStreamProvider("SMSProvider")
-                        .Configure<ClusterOptions>(clientConfig.GetSection("ClusterOptions"))
-                        .Configure<StaticGatewayListProviderOptions>(servicesConfig.GetSection("StaticGatewayListProviderOptions"))
-                        .Configure<ConsulClusteringClientOptions>(servicesConfig.GetSection("ConsulClusteringClientOptions"))
+                        .Configure<ClusterOptions>(clientConfig.GetSection("ClusterOptions"))// 配置cluster属性
+                        .Configure<StaticGatewayListProviderOptions>(servicesConfig.GetSection("StaticGatewayListProviderOptions"))// 配置silo gateway
+                        .Configure<ConsulClusteringClientOptions>(servicesConfig.GetSection("ConsulClusteringClientOptions"))// 配置consul
                         .ConfigureApplicationParts(parts => parts
                             .AddFromAppDomain()
                             .WithReferences())
@@ -142,11 +142,11 @@ namespace MyClient
         {
             var streamProvider = client.GetStreamProvider("SMSProvider");
             var stream = streamProvider.GetStream<int>(Guid.Empty, "RANDOMDATA");
-            var subscriptionHandle = await stream.SubscribeAsync<int>(
-                    async (data, token) =>
-                    {
-                        await Task.Run(() => Console.WriteLine($"SMSProvider-RANDOMDATA-RECEIVED:{data}"));
-                    });
+            var subscriptionHandle = await stream.SubscribeAsync<int>((data, token) =>
+            {
+                Console.WriteLine($"SMSProvider-RANDOMDATA-RECEIVED:{data}");
+                return Task.CompletedTask;
+            });
 
             var shs = await stream.GetAllSubscriptionHandles();
             // foreach (var sh in shs)
