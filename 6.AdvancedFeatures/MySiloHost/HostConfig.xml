@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<OrleansConfiguration xmlns="urn:orleans">
+    <Globals>
+        <StorageProviders>
+            <Provider Type="Orleans.Storage.MemoryStorage"
+                Name="OrleansSQLStorage" />
+            <Provider Type="Orleans.Storage.MemoryStorage"
+                FireAndForget="false"
+                Name="PubSubStore" />
+        </StorageProviders>
+
+        <!--Consul-->
+        <!--<SystemStore SystemStoreType="Custom" DataConnectionString="http://47.92.143.45:8500" DeploymentId="第一测试" MembershipTableAssembly="OrleansConsulUtils" />-->
+
+        <SeedNode Address="localhost" Port="22222" />
+    </Globals>
+
+    <Defaults>
+        <Networking Address="localhost" Port="22222" />
+        <ProxyingGateway Address="localhost" Port="40000" />
+    </Defaults>
+</OrleansConfiguration>
