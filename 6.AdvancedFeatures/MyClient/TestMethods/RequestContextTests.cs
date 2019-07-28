@@ -15,10 +15,12 @@ namespace MyClient.TestMethods
         public static Task Run(IClusterClient client)
         {
             _client = client;
-            return Task.WhenAll(
-                Run1(),
-                Run1_2(),
-                Run2());
+            return Task.Run(async () =>
+            {
+                await Run1();
+                await Run1_2();
+                await Run2();
+            });
         }
 
         private static async Task Run1()

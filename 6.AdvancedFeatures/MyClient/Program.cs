@@ -47,7 +47,15 @@ namespace MyClient
                 {
                     subscriptionHandle = await SubscribeStream(client);
 
-                    await RequestContextTests.Run(client);
+                    try
+                    {
+                        await RequestContextTests.Run(client);
+                        await ExternalTasksTests.Run(client);
+                    }
+                    catch (System.Exception ex)
+                    {
+                        Console.WriteLine($"{ex.Message}{Environment.NewLine}{ex.StackTrace}");
+                    }
 
                     await Task.WhenAll(subscriptionHandle.Select(h => h.UnsubscribeAsync()));
                     await client.Close();
