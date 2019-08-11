@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
     <Content Include="init\HostConfig.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -17,29 +17,20 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Xml" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Ini" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Orleans.OrleansProviders" Version="2.3.5" />
-    <PackageReference Include="Microsoft.Orleans.Server" Version="2.3.5" />
-    <PackageReference Include="Microsoft.Orleans.OrleansRuntime" Version="2.3.5" />
-    <PackageReference Include="Microsoft.Orleans.OrleansCodeGenerator" Version="2.3.5" />
-    <PackageReference Include="Microsoft.Orleans.OrleansCodeGenerator.Build" Version="2.3.5">
+    <PackageReference Include="Microsoft.Orleans.OrleansProviders" Version="2.4.0" />
+    <PackageReference Include="Microsoft.Orleans.Server" Version="2.4.0" />
+    <PackageReference Include="Microsoft.Orleans.OrleansRuntime" Version="2.4.0" />
+    <PackageReference Include="Microsoft.Orleans.OrleansCodeGenerator" Version="2.4.0" />
+    <PackageReference Include="Microsoft.Orleans.OrleansCodeGenerator.Build" Version="2.4.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="OrleansDashboard" Version="2.3.5" />
-    <PackageReference Include="Microsoft.Orleans.OrleansConsulUtils" Version="2.3.5" />
+    <PackageReference Include="OrleansDashboard" Version="2.4.0" />
+    <PackageReference Include="Microsoft.Orleans.OrleansConsulUtils" Version="2.4.0" />
   </ItemGroup>
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <TargetFramework>netcoreapp2.2</TargetFramework>
     <LangVersion>latest</LangVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <LangVersion>latest</LangVersion>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ServerGarbageCollection>true</ServerGarbageCollection>
-    <ConcurrentGarbageCollection>true</ConcurrentGarbageCollection>
   </PropertyGroup>
 </Project>

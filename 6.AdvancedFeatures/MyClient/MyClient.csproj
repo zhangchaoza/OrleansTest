@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
     <Content Include="init\ClientConfig.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -16,18 +16,13 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Xml" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Ini" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Orleans.Client" Version="2.3.5" />
-    <PackageReference Include="Microsoft.Orleans.OrleansRuntime" Version="2.3.5" />
-    <PackageReference Include="Microsoft.Orleans.OrleansConsulUtils" Version="2.3.5" />
+    <PackageReference Include="Microsoft.Orleans.Client" Version="2.4.0" />
+    <PackageReference Include="Microsoft.Orleans.OrleansRuntime" Version="2.4.0" />
+    <PackageReference Include="Microsoft.Orleans.OrleansConsulUtils" Version="2.4.0" />
   </ItemGroup>
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <LangVersion>latest</LangVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <TargetFramework>netcoreapp2.2</TargetFramework>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
 </Project>
