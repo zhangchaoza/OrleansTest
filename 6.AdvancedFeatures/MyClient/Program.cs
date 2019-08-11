@@ -49,8 +49,8 @@ namespace MyClient
 
                     try
                     {
-                        // await RequestContextTests.Run(client);
-                        // await ExternalTasksTests.Run(client);
+                        await RequestContextTests.Run(client);
+                        await ExternalTasksTests.Run(client);
                         await CallFilterTests.Run(client);
                     }
                     catch (System.Exception ex)
