@@ -1,4 +1,5 @@
 ﻿using Common;
+using GrainInterfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -6,6 +7,7 @@ using MySiloHost.StartupTasks;
 using Orleans;
 using Orleans.Configuration;
 using Orleans.Hosting;
+using Orleans.Runtime;
 using OrleansDashboard;
 using System;
 using System.ComponentModel;
@@ -114,7 +116,23 @@ namespace MySiloHost
                     // .AddFilter("Orleans.Runtime.SiloControl", LogLevel.Warning)
                     // .AddFilter("Runtime", LogLevel.Warning)
                     .SetMinimumLevel(LogLevel.Debug)
-                    .AddConsole());
+                    .AddConsole())
+
+                // Silo-wide Grain Call Filters
+                .AddIncomingGrainCallFilter(async context =>
+                {
+                    // If the method being called is 'MyInterceptedMethod', then set a value
+                    // on the RequestContext which can then be read by other filters or the grain.
+                    if (string.Equals(context.InterfaceMethod.Name, nameof(IGrainCallFiltersGrain.Call)))
+                    {
+                        RequestContext.Set("intercepted value", "this value was added by the filter");
+                    }
+
+                    await context.Invoke();
+
+                    // If the grain method returned an int, set the result to double that value.
+                    if (context.Result is int resultValue) context.Result = resultValue * 2;
+                });
 
             var host = builder.Build();
             await host.StartAsync();

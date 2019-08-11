@@ -49,8 +49,9 @@ namespace MyClient
 
                     try
                     {
-                        await RequestContextTests.Run(client);
-                        await ExternalTasksTests.Run(client);
+                        // await RequestContextTests.Run(client);
+                        // await ExternalTasksTests.Run(client);
+                        await CallFilterTests.Run(client);
                     }
                     catch (System.Exception ex)
                     {
@@ -117,12 +118,29 @@ namespace MyClient
                         .ConfigureApplicationParts(parts => parts
                             .AddFromAppDomain()
                             .WithReferences())
+
+                        .AddOutgoingGrainCallFilter(async context =>
+                        {
+                            // If the method being called is 'MyInterceptedMethod', then set a value
+                            // on the RequestContext which can then be read by other filters or the grain.
+                            if (string.Equals(context.InterfaceMethod.Name, nameof(IGrainCallFiltersGrain.Call)))
+                            {
+                                RequestContext.Set("intercepted value2", "this value was added by the filter");
+                            }
+
+                            await context.Invoke();
+
+                            // If the grain method returned an int, set the result to double that value.
+                            if (context.Result is int resultValue) context.Result = resultValue * 2;
+                        })
+
                         .ConfigureLogging(logging => logging
+                            .SetMinimumLevel(LogLevel.None)
                             .AddFilter("Orleans", LogLevel.Warning)
                             .AddFilter("Orleans.Runtime.Management", LogLevel.Warning)
                             .AddFilter("Orleans.Runtime.SiloControl", LogLevel.Warning)
                             .AddFilter("Runtime", LogLevel.Warning)
-                            .SetMinimumLevel(LogLevel.None)
+                            .AddFilter("MyClient.Program", LogLevel.Trace)
                             .AddConsole())
                         .Build();
 
