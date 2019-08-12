@@ -132,7 +132,10 @@ namespace MySiloHost
 
                     // If the grain method returned an int, set the result to double that value.
                     if (context.Result is int resultValue) context.Result = resultValue * 2;
-                });
+                })
+                // use DI setting Silo-wide Grain Call Filters
+                // .ConfigureServices(services => services.AddSingleton<IIncomingGrainCallFilter, LoggingCallFilter>())
+                ;
 
             var host = builder.Build();
             await host.StartAsync();
