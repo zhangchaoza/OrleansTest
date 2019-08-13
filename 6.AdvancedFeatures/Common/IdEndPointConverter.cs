@@ -1,7 +1,5 @@
 using System;
 using System.ComponentModel;
-using System.ComponentModel.Design.Serialization;
-using System.Drawing;
 using System.Globalization;
 using System.Net;
 
@@ -11,7 +9,7 @@ namespace Common
     {
         // Overrides the CanConvertFrom method of TypeConverter.
         // The ITypeDescriptorContext interface provides the context for the
-        // conversion. Typically, this interface is used at design time to 
+        // conversion. Typically, this interface is used at design time to
         // provide information about the design-time container.
         public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
         {
@@ -21,6 +19,7 @@ namespace Common
             }
             return base.CanConvertFrom(context, sourceType);
         }
+
         // Overrides the ConvertFrom method of TypeConverter.
         public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
         {
@@ -51,5 +50,4 @@ namespace Common
             return base.ConvertFrom(context, culture, value);
         }
     }
-
 }

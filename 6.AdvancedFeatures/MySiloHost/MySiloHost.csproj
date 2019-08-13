@@ -28,9 +28,16 @@
     <PackageReference Include="OrleansDashboard" Version="2.4.0" />
     <PackageReference Include="Microsoft.Orleans.OrleansConsulUtils" Version="2.4.0" />
   </ItemGroup>
+
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
+
+  <PropertyGroup>
+    <ServerGarbageCollection>true</ServerGarbageCollection>
+    <ConcurrentGarbageCollection>true</ConcurrentGarbageCollection>
+  </PropertyGroup>
+
 </Project>

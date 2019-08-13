@@ -1,22 +1,22 @@
-﻿using Common;
-using GrainInterfaces;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using MySiloHost.StartupTasks;
-using Orleans;
-using Orleans.Configuration;
-using Orleans.Hosting;
-using Orleans.Runtime;
-using OrleansDashboard;
-using System;
-using System.ComponentModel;
-using System.IO;
-using System.Net;
-using System.Threading.Tasks;
-
-namespace MySiloHost
+﻿namespace MySiloHost
 {
+    using Common;
+    using GrainImplement;
+    using GrainInterfaces;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Logging;
+    using MySiloHost.StartupTasks;
+    using Orleans;
+    using Orleans.Configuration;
+    using Orleans.Hosting;
+    using Orleans.Runtime;
+    using System;
+    using System.ComponentModel;
+    using System.IO;
+    using System.Net;
+    using System.Threading.Tasks;
+
     internal class Program
     {
         private static int Main(string[] args) => RunAsync().Result;
@@ -117,6 +117,13 @@ namespace MySiloHost
                     // .AddFilter("Runtime", LogLevel.Warning)
                     .SetMinimumLevel(LogLevel.Debug)
                     .AddConsole())
+
+                .ConfigureServices(services =>
+                {
+                    // Register Client of GrainService
+                    services.AddSingleton<IDataServiceClient, DataServiceClient>();
+                })
+                .AddGrainService<LightstreamerDataService>()
 
                 // Silo-wide Grain Call Filters
                 .AddIncomingGrainCallFilter(async context =>

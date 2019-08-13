@@ -1,9 +1,9 @@
 namespace GrainImplement
 {
-    using System.Threading;
-    using System.Threading.Tasks;
     using GrainInterfaces;
     using Orleans;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     internal class SampleWorker
     {

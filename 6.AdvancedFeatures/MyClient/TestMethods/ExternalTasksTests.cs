@@ -1,13 +1,12 @@
 namespace MyClient.TestMethods
 {
-    using System.Threading.Tasks;
     using GrainInterfaces;
     using Orleans;
-    using Orleans.Runtime;
+    using System.Threading.Tasks;
 
     internal static class ExternalTasksTests
     {
-        static IClusterClient _client;
+        private static IClusterClient _client;
 
         public static Task Run(IClusterClient client)
         {
@@ -37,6 +36,5 @@ namespace MyClient.TestMethods
             var testGrain = _client.GetGrain<IExternalTasksGrains>(1);
             await testGrain.WaitGrainMethod();
         }
-
     }
 }

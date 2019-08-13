@@ -1,32 +1,29 @@
 ﻿using Common;
 using GrainInterfaces;
-using System;
-using System.ComponentModel;
-using System.Net;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using MyClient.TestMethods;
 using Orleans;
 using Orleans.Configuration;
 using Orleans.Hosting;
 using Orleans.Runtime;
-using Orleans.Runtime.Configuration;
 using Orleans.Streams;
-using System.IO;
-using System.Diagnostics;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
 using System.Linq;
-using Orleans.Concurrency;
-using MyClient.TestMethods;
+using System.Net;
+using System.Threading.Tasks;
 
 namespace MyClient
 {
     public class Program
     {
-        static readonly Random random = new Random();
+        private static readonly Random random = new Random();
         private static IList<StreamSubscriptionHandle<int>> subscriptionHandle;
 
-        static async Task<int> Main(string[] args)
+        private static async Task<int> Main(string[] args)
         {
             await InitAsync();
 
@@ -49,9 +46,10 @@ namespace MyClient
 
                     try
                     {
-                        await RequestContextTests.Run(client);
-                        await ExternalTasksTests.Run(client);
-                        await CallFilterTests.Run(client);
+                        // await RequestContextTests.Run(client);
+                        // await ExternalTasksTests.Run(client);
+                        // await CallFilterTests.Run(client);
+                        await GrainServiceTest.Run(client);
                     }
                     catch (System.Exception ex)
                     {

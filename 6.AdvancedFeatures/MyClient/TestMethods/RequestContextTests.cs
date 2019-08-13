@@ -1,16 +1,16 @@
 namespace MyClient.TestMethods
 {
-    using System.Threading.Tasks;
     using GrainInterfaces;
     using Orleans;
     using Orleans.Runtime;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// RequestContext is thread-static
     /// </summary>
     internal static class RequestContextTests
     {
-        static IClusterClient _client;
+        private static IClusterClient _client;
 
         public static Task Run(IClusterClient client)
         {

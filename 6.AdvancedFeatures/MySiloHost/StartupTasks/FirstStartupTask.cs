@@ -1,13 +1,11 @@
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 using GrainInterfaces;
 using Orleans;
 using Orleans.Runtime;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace MySiloHost.StartupTasks
 {
-
     public class FirstStartupTask : IStartupTask
     {
         private readonly IGrainFactory grainFactory;

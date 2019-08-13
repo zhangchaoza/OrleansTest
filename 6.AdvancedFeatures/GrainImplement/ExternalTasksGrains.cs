@@ -1,11 +1,10 @@
 namespace GrainImplement
 {
-    using System.Threading;
-    using System.Threading.Tasks;
     using GrainInterfaces;
     using Microsoft.Extensions.Logging;
     using Orleans;
-    using System;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     public class ExternalTasksGrains : Grain, IExternalTasksGrains
     {
@@ -31,7 +30,7 @@ namespace GrainImplement
                 logger.LogInformation($"{nameof(t1)}:{nameof(TaskScheduler.Default)} == {nameof(TaskScheduler.Current)} = {TaskScheduler.Default.Equals(TaskScheduler.Current)}");
             });
             await t1;
-            // We are back to the Orleans task scheduler. 
+            // We are back to the Orleans task scheduler.
             // Since await was executed in Orleans task scheduler context, we are now back to that context.
             logger.LogInformation($"{nameof(RunExternalTask)}:{nameof(orleansTs)} == {nameof(TaskScheduler.Current)} = {orleansTs.Equals(TaskScheduler.Current)}");
         }
@@ -84,7 +83,6 @@ namespace GrainImplement
                     SampleWorker sw = new SampleWorker(gf, orleansTs);
                     sw.Do();
                 });
-
 
                 logger.LogInformation($"{nameof(WaitGrainMethod)}:{nameof(orleansTs)} == {nameof(TaskScheduler.Current)} = {orleansTs.Equals(TaskScheduler.Current)}");
                 logger.LogInformation($"{nameof(WaitGrainMethod)}:{nameof(TaskScheduler.Default)} == {nameof(TaskScheduler.Current)} = {TaskScheduler.Default.Equals(TaskScheduler.Current)}");

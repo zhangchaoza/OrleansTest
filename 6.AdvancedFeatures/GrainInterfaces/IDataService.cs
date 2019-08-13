@@ -1,12 +1,12 @@
 namespace GrainInterfaces
 {
-    using Orleans;
     using Orleans.CodeGeneration;
+    using Orleans.Services;
     using System.Threading.Tasks;
 
     [Version(1)]
-    public interface IRequestContextTestGrain : IGrainWithIntegerKey
+    public interface IDataService : IGrainService
     {
-        Task DisplayRequestContext();
+        Task MyMethod();
     }
 }

@@ -6,7 +6,7 @@ namespace MyClient.TestMethods
     using Orleans;
     using System.Threading.Tasks;
 
-    internal static class CallFilterTests
+    internal static class GrainServiceTest
     {
         private static IClusterClient _client;
         private static ILogger _logger;
@@ -19,22 +19,13 @@ namespace MyClient.TestMethods
             return Task.Run(async () =>
             {
                 await Run1();
-                await Run2();
             });
         }
 
         private static async Task Run1()
         {
-            var testGrain = _client.GetGrain<IGrainCallFiltersGrain>(1);
-            var result = await testGrain.Call();
-            _logger.LogInformation("result={0}", result);
-        }
-
-        private static async Task Run2()
-        {
-            var testGrain = _client.GetGrain<IPer_grain_GrainCallFiltersGrain>(1);
-            var result = await testGrain.Call();
-            _logger.LogInformation("result={0}", result);
+            var testGrain = _client.GetGrain<IGrainServiceTestGrain>(1);
+            await testGrain.Call();
         }
     }
 }

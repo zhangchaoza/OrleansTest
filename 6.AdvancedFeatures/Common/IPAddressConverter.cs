@@ -1,10 +1,7 @@
 using System;
 using System.ComponentModel;
-using System.ComponentModel.Design.Serialization;
-using System.Drawing;
 using System.Globalization;
 using System.Net;
-
 
 namespace Common
 {
@@ -18,6 +15,7 @@ namespace Common
             }
             return base.CanConvertFrom(context, sourceType);
         }
+
         // Overrides the ConvertFrom method of TypeConverter.
         public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
         {
@@ -47,6 +45,5 @@ namespace Common
             }
             return base.ConvertFrom(context, culture, value);
         }
-
     }
 }

@@ -7,12 +7,10 @@ namespace GrainInterfaces
     [Version(1)]
     public interface IExternalTasksGrains : IGrainWithIntegerKey
     {
-
         Task RunExternalTask();
 
         Task RunExternalTask2();
 
         Task WaitGrainMethod();
-
     }
 }
