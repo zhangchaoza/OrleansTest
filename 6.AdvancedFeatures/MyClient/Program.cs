@@ -1,23 +1,23 @@
-﻿using Common;
-using GrainInterfaces;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
-using MyClient.TestMethods;
-using Orleans;
-using Orleans.Configuration;
-using Orleans.Hosting;
-using Orleans.Runtime;
-using Orleans.Streams;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
-
-namespace MyClient
+﻿namespace MyClient
 {
+    using Common;
+    using GrainInterfaces;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.Logging;
+    using MyClient.TestMethods;
+    using Orleans;
+    using Orleans.Configuration;
+    using Orleans.Hosting;
+    using Orleans.Runtime;
+    using Orleans.Streams;
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.IO;
+    using System.Linq;
+    using System.Net;
+    using System.Threading.Tasks;
+
     public class Program
     {
         private static readonly Random random = new Random();
@@ -46,10 +46,11 @@ namespace MyClient
 
                     try
                     {
-                        // await RequestContextTests.Run(client);
-                        // await ExternalTasksTests.Run(client);
-                        // await CallFilterTests.Run(client);
+                        await RequestContextTests.Run(client);
+                        await ExternalTasksTests.Run(client);
+                        await CallFilterTests.Run(client);
                         await GrainServiceTest.Run(client);
+                        await CancellationTokensTests.Run(client);
                     }
                     catch (System.Exception ex)
                     {
