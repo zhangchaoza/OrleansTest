@@ -46,11 +46,12 @@
 
                     try
                     {
-                        await RequestContextTests.Run(client);
-                        await ExternalTasksTests.Run(client);
-                        await CallFilterTests.Run(client);
-                        await GrainServiceTest.Run(client);
-                        await CancellationTokensTests.Run(client);
+                        // await RequestContextTests.Run(client);
+                        // await ExternalTasksTests.Run(client);
+                        // await CallFilterTests.Run(client);
+                        // await GrainServiceTest.Run(client);
+                        // await CancellationTokensTests.Run(client);
+                        await CallingTransactionsTests.Run(client);
                     }
                     catch (System.Exception ex)
                     {

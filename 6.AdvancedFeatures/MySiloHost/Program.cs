@@ -142,7 +142,14 @@
                 })
                 // use DI setting Silo-wide Grain Call Filters
                 // .ConfigureServices(services => services.AddSingleton<IIncomingGrainCallFilter, LoggingCallFilter>())
-                ;
+
+                // 启用Transactions
+                // .AddAzureTableTransactionalStateStorage("TransactionStore", options =>
+                // {
+                //     options.ConnectionString = "YOUR_STORAGE_CONNECTION_STRING";
+                // })
+                .AddMemoryGrainStorage("TransactionStore")// 需要添加名称为TransactionStore的GrainStore
+                .UseTransactions();
 
             var host = builder.Build();
             await host.StartAsync();

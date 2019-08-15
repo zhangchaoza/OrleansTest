@@ -3,8 +3,8 @@ namespace GrainImplement.States
     using System;
 
     [Serializable]
-    public class GrainServiceTestGrainState
+    public class Balance
     {
-        public int Num { get; set; }
+        public uint Value { get; set; } = 1000;
     }
 }
